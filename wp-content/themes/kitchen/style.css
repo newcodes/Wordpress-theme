@@ -26,7 +26,8 @@ body {
  */
 
 .top-bar {
-    padding: 15px 0px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     background: #dfe3e5;
 }
 
@@ -124,6 +125,10 @@ body {
     #navbar > div {
         float: none;
         text-align: center;
+    }
+    
+    #navbar > div > ul > li > a {
+        padding: 15px 20px;
     }
     
 }
