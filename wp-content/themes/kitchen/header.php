@@ -29,32 +29,51 @@
         <div class='col-xs-10 col-sm-12 col-centered row'>
             <nav class="navbar">
 
-
-                    <div class='navbar-header col-xs-12 col-sm-3 col-sm-offset-1 col-md-2 col-md-offset-1 col-ld-2 col-ld-offset-1'>
-
-                        <?php 
-                        if ( function_exists( 'the_custom_logo' ) ) {
-                            the_custom_logo();
-                        }
-                        ?>
-                    </div>
-                    <div class="navbar-content">
-                        <div class='mobnav-button' data-toggle="collapse" data-target="#navbar">
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                        </div>
-                        <div id='navbar' class="collapse col-xs-12 col-sm-8 col-md-8 col-lg-8">
-                            <?php 
-                                wp_nav_menu( array(
-                                    'theme_location' => 'primary',
-                                    'items_wrap' => '<ul id="%1$s" class="%2$s">%3$s</ul>',
-                                    'menu_id' => '',
-                                    'menu_class' => 'nav navbar-nav'
-                                ) );
-                             ?>
-                        </div>
-                    </div>
+                    <?php  if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) {?>
+                            <div class='navbar-header col-xs-12 col-sm-3 col-sm-offset-1 col-md-2 col-md-offset-1 col-ld-2 col-ld-offset-1'>
+                                <?php 
+                                    if ( function_exists( 'the_custom_logo' ) ) {
+                                        the_custom_logo();
+                                    }
+                                ?>
+                            </div>
+                            <div class="navbar-content">
+                                <div class='mobnav-button' data-toggle="collapse" data-target="#navbar">
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                </div>
+                                <div id='navbar' class="collapse col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                    <?php 
+                                        wp_nav_menu( array(
+                                            'theme_location' => 'primary',
+                                            'items_wrap' => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+                                            'menu_id' => '',
+                                            'menu_class' => 'nav navbar-nav'
+                                        ) );
+                                     ?>
+                                </div>
+                            </div>
+                    <?php } else { ?>
+                            <div class="navbar-content">
+                                <div class='mobnav-button' data-toggle="collapse" data-target="#navbar">
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                </div>
+                                <div id='navbar' class="collapse col-xs-12 col-sm-10 col-centered" style="height:80px">
+                                    <?php 
+                                        wp_nav_menu( array(
+                                            'theme_location' => 'primary',
+                                            'items_wrap' => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+                                            'menu_id' => '',
+                                            'menu_class' => 'nav navbar-nav'
+                                        ) );
+                                     ?>
+                                </div>
+                            </div>
+                    <?php } ?>
+                    
             </nav>
         </div>
     </div>
