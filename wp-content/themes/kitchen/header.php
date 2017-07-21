@@ -78,5 +78,5 @@
         </div>
     </div>
     
-    
+ <ul><?php pll_the_languages(); ?></ul>   
 </header>
