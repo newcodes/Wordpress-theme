@@ -60,6 +60,10 @@ body {
     text-align: center;
 }
 
+header .social {
+    padding: 0px;
+}
+
 .mobnav-button {
     display: none;
 }

@@ -18,7 +18,12 @@
     <div class="row">
         <div class="top-bar col-xs-10 col-centered row">
             <div class="social">
-                Past here some icons
+                <ul>
+                    <li class="facebook"><a target="_blank" href="#" title="Facebook">F</a></li>
+                    <li class="instagram"><a target="_blank" href="#" title="Instagram">I</a></li>
+                    <li class="googleplus"><a target="_blank" href="#" title="Google+">G</a></li>
+                    <li class="youtube"><a target="_blank" href="#" title="Youtube">X</a></li>
+                </ul>
             </div>
             <div class="phone">
                 <i class="icon-mobile-phone">
