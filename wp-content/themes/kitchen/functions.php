@@ -10,6 +10,7 @@ function armadio_enqueue_scripts() {
     $dependencies = array('jquery');
     wp_enqueue_script('jquery', get_template_directory_uri().'/lib/jquery-3.2.1.min.js', '', true );
     wp_enqueue_script('bootstrap', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', $dependencies, true );
+    wp_enqueue_script('contact-maps', get_template_directory_uri() . '/lib/contact-maps.js', array( 'jquery' ) );
 }
 
 
