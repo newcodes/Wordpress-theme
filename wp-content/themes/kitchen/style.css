@@ -21,6 +21,11 @@ body {
     background: #dfe3e5;
 }
 
+.row {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
 /*
  *  Header
  */
@@ -169,7 +174,7 @@ header .social li a:hover {
     display: none;
 }
 
-.menu-item:nth-child(n + 4) > ul.sub-menu{
+.menu-item:nth-last-child(-n + 3) > ul.sub-menu{
     right: 0px;
 }
 
@@ -221,9 +226,6 @@ header .social li a:hover {
     background: #27BC66;
 }
 
-
-
-/*Titar*/
     
 @font-face {font-family:"Socialico";src:url("lib/fonts/Socialico/Socialico.eot?") format("eot"),url("lib/fonts/Socialico/Socialico.woff") format("woff"),url("lib/fonts/Socialico/Socialico.ttf") format("truetype"),url("lib/fonts/Socialico/Socialico.svg#Socialico") format("svg");font-weight:normal;font-style:normal;}
 
