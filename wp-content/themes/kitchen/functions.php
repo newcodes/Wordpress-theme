@@ -16,8 +16,29 @@ function armadio_enqueue_scripts() {
 add_action( 'wp_enqueue_scripts', 'armadio_enqueue_styles' );
 add_action( 'wp_enqueue_scripts', 'armadio_enqueue_scripts' );
 
+add_filter( 'locale', 'armadio_localized' );
+function armadio_localized( $locale )
+{
+	if ( isset( $_GET['l'] ) )
+	{
+		return sanitize_key( $_GET['l'] );
+	}
+
+	return $locale;
+}
+
 function armadio_wp_setup() {
     add_theme_support( 'title-tag' );
+    
+    load_theme_textdomain( 'armadio', get_template_directory() . '/languages' );
+    
+    add_theme_support( 'html5', array(
+		'search-form',
+		'comment-form',
+		'comment-list',
+		'gallery',
+		'caption',
+	) );
     
     add_theme_support( 'custom-logo', array(
         'height'      => 100,
@@ -26,10 +47,12 @@ function armadio_wp_setup() {
         'flex-width'  => true
     ) );
     
-    register_nav_menu ('primary', 'Primary menu');
+    register_nav_menu( 'primary', __( 'Primary Menu', 'armadio' ) );
+    
 }
 
 add_action( 'after_setup_theme', 'armadio_wp_setup' );
+
 
 //Налаштування теми
 
@@ -74,6 +97,11 @@ function display_theme_panel_fields(){
 
 add_action("admin_init", "display_theme_panel_fields");
 
+include_once( get_template_directory() . '/lib/classes/armadio_menu.php' );
+
+
+
 
 //Кінець налаштування теми
+
 ?>

@@ -67,7 +67,9 @@
                                             'theme_location' => 'primary',
                                             'items_wrap' => '<ul id="%1$s" class="%2$s">%3$s</ul>',
                                             'menu_id' => '',
-                                            'menu_class' => 'nav navbar-nav'
+                                            'menu_class' => 'nav navbar-nav',
+                                            'container' => '',
+                                            'depht' => 4
                                         ) );
                                      ?>
                                 </div>
@@ -77,6 +79,4 @@
             </nav>
         </div>
     </div>
-    
-    
 </header>
