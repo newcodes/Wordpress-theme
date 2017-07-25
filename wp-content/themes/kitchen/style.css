@@ -139,4 +139,73 @@ body {
     }
 }
     
+
+/* Display sub menu*/
+
+.menu-item > ul.sub-menu {
+    display: none;
+    position: absolute;
+    list-style: none;
+    background: #2ecc71;
+    padding: 0px;
+}
+
+
+/*disable third level of nesting category*/
+
+.menu-item > ul.sub-menu ul.sub-menu {
+    display: none;
+}
+
+.menu-item:nth-child(n + 4) > ul.sub-menu{
+    right: 0px;
+}
+
+.menu-item > ul.sub-menu a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.menu-item > ul.sub-menu > li {
+    width: 150px;
+    padding: 6px 20px 6px 15px;
+    font-size: 14px;
+}
+
+.menu-item:hover > ul.sub-menu {
+    position: absolute;
+    display: block;
+    overflow: hidden;
+    animation: smoth-dropdown-menu .2s linear;
+}
+
+@-webkit-keyframes smoth-dropdown-menu {
+    from { max-height: 0px; }
     
+    to { max-height: 300%}       
+} 
+
+@keyframes smoth-dropdown-menu {
+    from { max-height: 0px; }
+    
+    to { max-height: 300% }       
+} 
+
+.menu-item:hover > a {
+    background: #2ecc71;
+}
+
+.menu-item > ul.sub-menu:hover {
+    display: block;
+    background: #2ecc71;
+}
+
+.menu-item > ul.sub-menu > a {
+    display: block;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+.menu-item > ul.sub-menu > a:hover {
+    background: #27BC66;
+}
+

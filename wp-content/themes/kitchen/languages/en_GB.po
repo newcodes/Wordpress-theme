@@ -1,0 +1,23 @@
+# LANGUAGE (UK) translation for WordPress.
+# Copyright (C) 2017 WordPress contributors.
+# This file is distributed under the same license as the WordPress package.
+# Armadio , 2017.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: WordPress 4.8\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-07-04 17:11-0600\n"
+"PO-Revision-Date: 2017-07-24 13:23+0300\n"
+"Language-Team: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.3\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: en_GB\n"
+
+#: front-page.php:3
+msgid "Домашня сторінка"
+msgstr "Home"
