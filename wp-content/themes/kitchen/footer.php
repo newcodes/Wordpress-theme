@@ -1,6 +1,6 @@
 <footer id="footer">
-    <div class="container col-xs-12">
-        <div class="row copyrights last">
+    <div class="container col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="copyrights col-xs-12 col-sm-10 col-md-10 col-lg-10">
             <p> © 2017 Armadio. All Rights Reserved.</p>
             <div class="social">
                 <ul>
@@ -13,7 +13,7 @@
 
         </div>
     </div>
-    
+
 </footer>
 <?php wp_footer(); ?>
 </body>

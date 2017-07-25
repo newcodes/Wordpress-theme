@@ -144,6 +144,11 @@ body {
 #footer {
     background-color: #2c3e50;
     color: #dfe3e5;
+    position: absolute;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 }
 #footer .container {
     padding-top: 40px;
@@ -158,7 +163,9 @@ body {
 #footer .copyrights {
     overflow: hidden;
     border-top: 1px solid rgba(255, 255, 255, .05);
-    padding: 20px 0 40px !important;
+    float: none;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 #footer .copyrights p {
@@ -169,6 +176,33 @@ body {
     padding-top: 4px;
 }
 
+@media (max-width: 767px) {
+    #footer .copyrights p {
+        display: block;
+        margin: 0 auto;
+        float: none;
+        text-align: center;
+    }
+    .social {
+        display: block;
+        margin: 0 auto;
+        float: none;
+        text-align: center;
+        position: relative;
+        right: -37%;
+    }
+
+    .social ul {
+        margin-left: -35px;
+    }
+    .social li {
+        display: inline-block;
+        float: none;
+        margin: 1px 5px;
+        text-align: center;
+    }
+}
+
 #footer .copyrights .social {
     float: right;
 }
@@ -177,6 +211,10 @@ body {
     display: block;
     float: left;
     margin: 1px 7px;
+}
+
+.social li:last-child {
+    margin-right: 0;
 }
 
 #footer .social li a {
