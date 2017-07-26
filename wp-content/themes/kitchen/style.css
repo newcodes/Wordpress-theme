@@ -59,8 +59,9 @@ body {
 }
 
 .navbar-header {
+    position: absolute;
     padding: 20px 25px;
-    z-index: 10;
+    z-index: 98;
     background: #fff;
     text-align: center;
 }
@@ -87,7 +88,7 @@ header .social li a:hover {
     position: absolute;
     top: 5px;
     right: 10%;
-    z-index: 11;
+    z-index: 99;
     cursor: pointer;
 }
 
@@ -123,14 +124,27 @@ header .social li a:hover {
 
 @media screen and (max-width: 767px){
     
+    .navbar-header {
+        position: relative;
+    }
+
     .phone {
         float: none!important;
         text-align: center;
+        border-right: none!important;
+        padding: 0px!important;
+        
     }
     
-    .social {
+    header .social {
         float:none!important;
         text-align: center;
+        position: relative;
+        height: 50px;
+        margin: 0 auto;
+        text-align: center;
+        display: block;
+        width: 152px;
     }
     
     .mobnav-button {
@@ -139,6 +153,7 @@ header .social li a:hover {
     
     .navbar {
       height: auto;  
+      margin-bottom: 0px;
     }
     
     #navbar > div {
@@ -150,22 +165,72 @@ header .social li a:hover {
         padding: 15px 20px;
     }
     
+/*   dropdown menu*/
+    
+    #menu-home > li:hover > ul.sub-menu{
+        position: relative!important;
+        max-height: 700px!important;
+        overflow: hidden!important;
+         -webkit-transition: max-height 3s ease-out;
+        -ms-transition: max-height 3s ease-out;
+        -o-transition: max-height 3s ease-out;
+        transition: max-height 3s ease-out;
+    }
+    
+    .menu-item > ul.sub-menu {
+        overflow: hidden!important;
+        position: relative!important;
+        max-height: 0px!important;        
+    }
+    
+    .menu-item > ul.sub-menu > li {
+        width: 100%;
+    }
+    
+/*    mobile button*/
+    
+    #menu-home > li.menu-item-has-children > a {
+        width: 100%;
+    }
+    
+    #menu-home > li.menu-item-has-children > a:after {
+        position: relative;
+        float: right;
+        font-size: 1.8em;
+        content: '+';
+        cursor: pointer;
+        pointer-events: none;
+        z-index: 10;
+    }
+    
 }
 
 @media screen and (min-width: 768px){
     #navbar {
         display: block;
     }
+    
+    .menu-item > ul.sub-menu > li {
+        width: 170px;
+    }
 }
 
 /* Display sub menu*/
 
 .menu-item > ul.sub-menu {
-    display: none;
+    display: block;
+    max-height: 0px;
+    overflow: hidden;
     position: absolute;
     list-style: none;
     background: #2ecc71;
     padding: 0px;
+    z-index: 99;
+    -webkit-transition: max-height .2s; 
+    -moz-transition: max-height .2s; 
+    -ms-transition: max-height .2s; 
+    -o-transition: max-height .2s; 
+    transition: max-height .2s;  
 }
 
 /*disable third level of nesting category*/
@@ -184,29 +249,24 @@ header .social li a:hover {
 }
 
 .menu-item > ul.sub-menu > li {
-    width: 150px;
     padding: 6px 20px 6px 15px;
     font-size: 14px;
+    border-bottom: 1px solid #39d67c;
+}
+
+.menu-item > ul.sub-menu > li:hover, .menu-item > ul.sub-menu > li:hover a {
+    background: #27BC66;
+    cursor: pointer;
 }
 
 .menu-item:hover > ul.sub-menu {
     position: absolute;
+    max-height: 300%;
     display: block;
     overflow: hidden;
-    animation: smoth-dropdown-menu .2s linear;
 }
 
-@-webkit-keyframes smoth-dropdown-menu {
-    from { max-height: 0px; }
-    
-    to { max-height: 300%}       
-} 
 
-@keyframes smoth-dropdown-menu {
-    from { max-height: 0px; }
-    
-    to { max-height: 300% }       
-} 
 
 .menu-item:hover > a {
     background: #2ecc71;

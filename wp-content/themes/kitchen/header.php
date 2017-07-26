@@ -48,7 +48,7 @@
                                         <div></div>
                                         <div></div>
                                 </div>
-                                <div id='navbar' class="collapse col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                <div id='navbar' class="collapse col-xs-12 col-sm-8 col-sm-offset-4 col-md-8 col-md-offset-3">
                                     <?php 
                                         wp_nav_menu( array(
                                             'theme_location' => 'primary',

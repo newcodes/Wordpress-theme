@@ -10,6 +10,7 @@ function armadio_enqueue_scripts() {
     $dependencies = array('jquery');
     wp_enqueue_script('jquery', get_template_directory_uri().'/lib/jquery-3.2.1.min.js', '', true );
     wp_enqueue_script('bootstrap', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', $dependencies, true );
+    
 }
 
 
@@ -29,6 +30,8 @@ function armadio_localized( $locale )
 
 function armadio_wp_setup() {
     add_theme_support( 'title-tag' );
+    
+    add_theme_support('widgets');
     
     load_theme_textdomain( 'armadio', get_template_directory() . '/languages' );
     
@@ -97,11 +100,23 @@ function display_theme_panel_fields(){
 
 add_action("admin_init", "display_theme_panel_fields");
 
-include_once( get_template_directory() . '/lib/classes/armadio_menu.php' );
-
-
-
-
 //Кінець налаштування теми
+
+// Регістрація віджетів
+
+function register_widgets_init() {
+
+	register_sidebar( array(
+		'name'          => 'area_to_slider',
+		'id'            => 'armadio_slider',
+		'before_widget' => '<div>',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h2 class="rounded">',
+		'after_title'   => '</h2>',
+	) );
+
+}
+add_action( 'widgets_init', 'register_widgets_init' );
+
 
 ?>
