@@ -54,6 +54,7 @@
                                             'theme_location' => 'primary',
                                             'items_wrap' => '<ul id="%1$s" class="%2$s">%3$s</ul>',
                                             'menu_id' => '',
+                                            'walker' => new Armadio_nav_menu(),
                                             'menu_class' => 'nav navbar-nav'
                                         ) );
                                      ?>
@@ -68,13 +69,15 @@
                                 </div>
                                 <div id='navbar' class="collapse col-xs-12 col-sm-10 col-centered" style="height:80px">
                                     <?php 
-                                        wp_nav_menu( array(
+
+                                         wp_nav_menu( array(
                                             'theme_location' => 'primary',
                                             'items_wrap' => '<ul id="%1$s" class="%2$s">%3$s</ul>',
                                             'menu_id' => '',
                                             'menu_class' => 'nav navbar-nav',
                                             'container' => '',
-                                            'depht' => 4
+                                            'depht' => 4,
+                                            'walker' => new Armadio_nav_menu()
                                         ) );
                                      ?>
                                 </div>
@@ -85,3 +88,7 @@
         </div>
     </div>
 </header>
+    
+<?php 
+   
+?>

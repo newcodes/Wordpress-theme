@@ -167,9 +167,9 @@ header .social li a:hover {
     
 /*   dropdown menu*/
     
-    #menu-home > li:hover > ul.sub-menu{
+    #menu-main-menu > li:hover > ul.sub-menu{
         position: relative!important;
-        max-height: 700px!important;
+        
         overflow: hidden!important;
          -webkit-transition: max-height 3s ease-out;
         -ms-transition: max-height 3s ease-out;
@@ -177,6 +177,15 @@ header .social li a:hover {
         transition: max-height 3s ease-out;
     }
     
+    #menu-main-menu > li > ul.hidden-mobile-menu{
+        max-height: 0px!important;
+        max-height: 700px!important;
+        -webkit-transition: max-height 3s ease-out;
+        -ms-transition: max-height 3s ease-out;
+        -o-transition: max-height 3s ease-out;
+        transition: max-height 3s ease-out;
+    }
+
     .menu-item > ul.sub-menu {
         overflow: hidden!important;
         position: relative!important;
@@ -189,19 +198,26 @@ header .social li a:hover {
     
 /*    mobile button*/
     
-    #menu-home > li.menu-item-has-children > a {
-        width: 100%;
+    #menu-main-menu > li.menu-item-has-children .mobile-dropdown-btn {
+        display: block!important;
+        z-index: 99;
+        cursor: pointer;
+        padding: 15px 20px;
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        height: 100%;
+        font-size: 1.8em;
     }
     
-    #menu-home > li.menu-item-has-children > a:after {
-        position: relative;
-        float: right;
-        font-size: 1.8em;
-        content: '+';
-        cursor: pointer;
-        pointer-events: none;
-        z-index: 10;
+    #menu-main-menu > li.menu-item-has-children:hover {
+        background: #2ecc71;
     }
+    
+    #menu-main-menu > li.active-mobile-submenu{
+        background: #2c3e50;
+    }
+
     
 }
 
@@ -226,11 +242,11 @@ header .social li a:hover {
     background: #2ecc71;
     padding: 0px;
     z-index: 99;
-    -webkit-transition: max-height .2s; 
-    -moz-transition: max-height .2s; 
-    -ms-transition: max-height .2s; 
-    -o-transition: max-height .2s; 
-    transition: max-height .2s;  
+    -webkit-transition: max-height .1s; 
+    -moz-transition: max-height .1s; 
+    -ms-transition: max-height .1s; 
+    -o-transition: max-height .1s; 
+    transition: max-height .1s;  
 }
 
 /*disable third level of nesting category*/
@@ -239,7 +255,7 @@ header .social li a:hover {
     display: none;
 }
 
-.menu-item:nth-last-child(-n + 3) > ul.sub-menu{
+.menu-item:nth-last-child(-n + 2) > ul.sub-menu{
     right: 0px;
 }
 
@@ -284,6 +300,10 @@ header .social li a:hover {
 }
 .menu-item > ul.sub-menu > a:hover {
     background: #27BC66;
+}
+
+#menu-main-menu > li.menu-item-has-children > a .mobile-dropdown-btn {
+    display: none;
 }
 
     

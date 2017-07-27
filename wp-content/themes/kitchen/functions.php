@@ -7,12 +7,17 @@ function armadio_enqueue_styles() {
 }
 
 function armadio_enqueue_scripts() {
+    
     $dependencies = array('jquery');
     wp_enqueue_script('jquery', get_template_directory_uri().'/lib/jquery-3.2.1.min.js', '', true );
     wp_enqueue_script('bootstrap', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', $dependencies, true );
     
+    wp_deregister_script( 'common' );
+    wp_register_script('common', get_template_directory_uri().'/lib/js/common.js', $dependencies);
+    wp_enqueue_script('common');
+    
+   
 }
-
 
 add_action( 'wp_enqueue_scripts', 'armadio_enqueue_styles' );
 add_action( 'wp_enqueue_scripts', 'armadio_enqueue_scripts' );
@@ -117,6 +122,8 @@ function register_widgets_init() {
 
 }
 add_action( 'widgets_init', 'register_widgets_init' );
+
+require_once( get_template_directory() . "/lib/classes/armadio_menu.php");
 
 
 ?>
