@@ -433,6 +433,18 @@ header .social li a:hover {
     padding: 0;
 }
 
+@media (max-width: 517px) {
+    .block-information {
+        width: 100%!important;
+    }
+}
+@media (min-width: 380px) and (max-width: 517px) {
+    .fb-block {
+        display: none;
+    }
+}
+
+
 @font-face {
     font-family:"Socialico";
     src:url("lib/fonts/Socialico/Socialico.eot?") format("eot"),url("lib/fonts/Socialico/Socialico.woff") format("woff"),url("lib/fonts/Socialico/Socialico.ttf") format("truetype"),url("lib/fonts/Socialico/Socialico.svg#Socialico") format("svg");
