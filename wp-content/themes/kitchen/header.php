@@ -17,6 +17,9 @@
 <header>
     <div class="row">
         <div class="top-bar col-xs-10 col-centered row">
+            <div id='languages-switch'>
+                <?php pll_the_languages(array('dropdown'=>1));  ?>
+            </div>
             <div class="social">
                 <ul>
                     <li class="facebook"><a target="_blank" href="#" title="Facebook">F</a></li>
@@ -26,8 +29,7 @@
                 </ul>
             </div>
             <div class="phone">
-                <i class="icon-mobile-phone">
-                </i>
+                <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
                 <?php echo get_option('phone_number'); ?>
             </div>
         </div>
@@ -88,7 +90,3 @@
         </div>
     </div>
 </header>
-    
-<?php 
-   
-?>

@@ -34,15 +34,20 @@ class Armadio_nav_menu extends Walker_Nav_Menu {
 		/* Check for children */
 		$children = get_posts(array('post_type' => 'nav_menu_item', 'nopaging' => true, 'numberposts' => 1, 'meta_key' => '_menu_item_menu_item_parent', 'meta_value' => $item->ID));
 		if (!empty($children)) {
-			$classes[] = 'has-sub';
+                $classes[] = 'has-sub';
+			
 		}
+        
+        if (wp_is_mobile()){
+            $classes[] = 'mobile-menu';
+        }
 		
 		$class_names = join(' ', apply_filters('nav_menu_css_class', array_filter($classes), $item, $args));
 		$class_names = $class_names ? ' class="' . esc_attr($class_names) . '"' : '';
 		
 		$id = apply_filters('nav_menu_item_id', 'menu-item-'. $item->ID, $item, $args);
 		$id = $id ? ' id="' . esc_attr($id) . '"' : '';
-		
+        
 		$output .= $indent . '<li ' . $id . $value . $class_names .'>';
 		
 		$attributes  = ! empty($item->attr_title) ? ' title="'  . esc_attr($item->attr_title) .'"' : '';

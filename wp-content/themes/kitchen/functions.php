@@ -124,6 +124,4 @@ function register_widgets_init() {
 add_action( 'widgets_init', 'register_widgets_init' );
 
 require_once( get_template_directory() . "/lib/classes/armadio_menu.php");
-
-
 ?>
