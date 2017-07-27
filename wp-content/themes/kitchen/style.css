@@ -18,7 +18,8 @@ Text Domain: armadio
 
 body {
     color: #717e8c;
-    background: #dfe3e5;
+    /*background: #dfe3e5;*/
+    background: #ffffff;
 }
 
 .row {
@@ -290,11 +291,14 @@ header .social li a:hover {
 @font-face {font-family:"Socialico";src:url("lib/fonts/Socialico/Socialico.eot?") format("eot"),url("lib/fonts/Socialico/Socialico.woff") format("woff"),url("lib/fonts/Socialico/Socialico.ttf") format("truetype"),url("lib/fonts/Socialico/Socialico.svg#Socialico") format("svg");font-weight:normal;font-style:normal;}
 
 #footer {
-    background-color: #2c3e50;
-    color: #dfe3e5;
+    color: #000000;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 }
 #footer .container {
     padding-top: 40px;
+    background-color: #2c3e50;
 }
 @media only screen and (max-width: 767px) {
     #footer .container {
@@ -306,7 +310,9 @@ header .social li a:hover {
 #footer .copyrights {
     overflow: hidden;
     border-top: 1px solid rgba(255, 255, 255, .05);
-    padding: 20px 0 40px !important;
+    float: none;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 #footer .copyrights p {
@@ -317,6 +323,33 @@ header .social li a:hover {
     padding-top: 4px;
 }
 
+@media (max-width: 767px) {
+    #footer .copyrights p {
+        display: block;
+        margin: 0 auto;
+        float: none;
+        text-align: center;
+    }
+    .social {
+        display: block;
+        margin: 0 auto;
+        float: none;
+        text-align: center;
+        position: relative;
+        right: -37%;
+    }
+
+    .social ul {
+        margin-left: -35px;
+    }
+    .social li {
+        display: inline-block;
+        float: none;
+        margin: 1px 5px;
+        text-align: center;
+    }
+}
+
 #footer .copyrights .social {
     float: right;
 }
@@ -325,6 +358,10 @@ header .social li a:hover {
     display: block;
     float: left;
     margin: 1px 7px;
+}
+
+.social li:last-child {
+    margin-right: 0;
 }
 
 #footer .social li a {
@@ -353,3 +390,107 @@ header .social li a:hover {
     -moz-transition: opacity .20s ease-in-out;
     -webkit-transition: opacity .20s ease-in-out;
 }
+#map {
+    width: 100%;
+    height: 330px;
+}
+.footer-information {
+    margin-bottom: 10px;
+}
+.contact {
+    background-color: #dfe3e5;
+    height: 330px;
+    text-transform: uppercase;
+    padding: 15px;
+}
+.contact h3 {
+    margin-top: 0;
+    color: #000000;
+    font-size: 26px;
+    font-family: Exo, Tahoma, sans-serif!important;
+    font-weight: 300!important;
+}
+.contact ul li {
+    margin-left: -35px;
+    overflow: hidden;
+    position: relative;
+    min-height: 55px;
+    padding: 5px 0 0 60px;
+    margin-bottom: 10px;
+    font-family: Exo, Tahoma, sans-serif!important;
+    font-weight: normal;
+    font-size: 14px;
+    font-style: normal;
+}
+
+.contact ul li i {
+    background: #c9d0d2;
+    color: #dfe3e5;
+    display: block;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 30px;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.contact ul li p {
+    margin-bottom: 0;
+}
+
+.info-box {
+    height: 330px;
+    background: #2ecc71;
+    color: #ffffff;
+    font-family: Exo, Tahoma, sans-serif!important;
+    font-weight: 300!important;
+}
+.info-box .info-box-header {
+    background: url("images/black_overlay.png");
+    position: relative;
+    padding: 20px;
+    text-transform: uppercase;
+}
+.info-box .info-box-header h4 {
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 28px;
+    margin-bottom: 0;
+    margin-top: -5px;
+}
+.info-box .info-box-header .arrow-info {
+    width: 53px;
+    height: 29px;
+    position: absolute;
+    left: 50%;
+    bottom: -29px;
+    margin-left: -26px;
+    background: url("images/black_overlay_arrow.png");
+}
+.info-box .info-box-desc {
+    padding: 35px 20px 20px;
+}
+.info-box .info-box-desc ul {
+    margin-left: -35px;
+}
+.info-box .info-box-desc ul li {
+    padding-left: 35px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    background: url("images/reasons_li.png") no-repeat left 0;
+}
+.fb-page {
+    height: 330px;
+}
+
+@font-face {
+    font-family:"Socialico";
+    src:url("lib/fonts/Socialico/Socialico.eot?") format("eot"),url("lib/fonts/Socialico/Socialico.woff") format("woff"),url("lib/fonts/Socialico/Socialico.ttf") format("truetype"),url("lib/fonts/Socialico/Socialico.svg#Socialico") format("svg");
+    font-weight:normal;
+    font-style:normal;
+}
+
+

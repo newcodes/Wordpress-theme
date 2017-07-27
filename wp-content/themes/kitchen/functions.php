@@ -3,7 +3,7 @@
 function armadio_enqueue_styles() {
     wp_register_style('bootstrap', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' );
     $dependencies = array('bootstrap');
-	wp_enqueue_style( 'armadio-style', get_stylesheet_uri(), $dependencies ); 
+	wp_enqueue_style( 'armadio-style', get_stylesheet_uri(), $dependencies );
 }
 
 function armadio_enqueue_scripts() {
@@ -12,10 +12,18 @@ function armadio_enqueue_scripts() {
     wp_enqueue_script('bootstrap', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', $dependencies, true );
     
 }
-
+wp_enqueue_script('contact-maps', get_template_directory_uri() . '/js/contact-maps.js');
 
 add_action( 'wp_enqueue_scripts', 'armadio_enqueue_styles' );
 add_action( 'wp_enqueue_scripts', 'armadio_enqueue_scripts' );
+
+function load_fonts(){
+    wp_register_style('et-googleFonts', 'https://fonts.googleapis.com/css?family=Exo:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&subset=latin-ext');
+    wp_enqueue_style( 'et-googleFonts');
+}
+
+add_action('wp_print_styles', 'load_fonts');
+include_once( get_template_directory() . '/lib/classes/armadio_menu.php' );
 
 add_filter( 'locale', 'armadio_localized' );
 function armadio_localized( $locale )
@@ -99,8 +107,8 @@ function display_theme_panel_fields(){
 
 
 add_action("admin_init", "display_theme_panel_fields");
-
 //Кінець налаштування теми
+
 
 // Регістрація віджетів
 
