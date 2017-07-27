@@ -16,7 +16,10 @@
 <body <?php body_class(); ?>>
 <header>
     <div class="row">
-        <div class="top-bar col-xs-10 col-centered row">
+        <div class="top-bar col-xs-11 col-centered row">
+            <div id='languages-switch'>
+                <?php pll_the_languages(array('dropdown'=>1));  ?>
+            </div>
             <div class="social">
                 <ul>
                     <li class="facebook"><a target="_blank" href="#" title="Facebook">F</a></li>
@@ -26,16 +29,15 @@
                 </ul>
             </div>
             <div class="phone">
-                <i class="icon-mobile-phone">
-                </i>
+                <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
                 <?php echo get_option('phone_number'); ?>
             </div>
         </div>
-        <div class='col-xs-10 col-sm-12 col-centered row'>
+        <div class='col-xs-11 col-centered row'>
             <nav class="navbar">
 
                     <?php  if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) {?>
-                            <div class='navbar-header col-xs-12 col-sm-3 col-sm-offset-1 col-md-2 col-md-offset-1 col-ld-2 col-ld-offset-1'>
+                            <div class='navbar-header col-xs-12 col-sm-3 col-md-3 col-ld-2'>
                                 <?php 
                                     if ( function_exists( 'the_custom_logo' ) ) {
                                         the_custom_logo();
@@ -48,12 +50,13 @@
                                         <div></div>
                                         <div></div>
                                 </div>
-                                <div id='navbar' class="collapse col-xs-12 col-sm-8 col-sm-offset-4 col-md-8 col-md-offset-3">
+                                <div id='navbar' class="collapse col-xs-12 col-sm-9 col-sm-offset-3 col-md-9 col-md-offset-3">
                                     <?php 
                                         wp_nav_menu( array(
                                             'theme_location' => 'primary',
                                             'items_wrap' => '<ul id="%1$s" class="%2$s">%3$s</ul>',
                                             'menu_id' => '',
+                                            'walker' => new Armadio_nav_menu(),
                                             'menu_class' => 'nav navbar-nav'
                                         ) );
                                      ?>
@@ -68,13 +71,15 @@
                                 </div>
                                 <div id='navbar' class="collapse col-xs-12 col-sm-10 col-centered" style="height:80px">
                                     <?php 
-                                        wp_nav_menu( array(
+
+                                         wp_nav_menu( array(
                                             'theme_location' => 'primary',
                                             'items_wrap' => '<ul id="%1$s" class="%2$s">%3$s</ul>',
                                             'menu_id' => '',
                                             'menu_class' => 'nav navbar-nav',
                                             'container' => '',
-                                            'depht' => 4
+                                            'depht' => 4,
+                                            'walker' => new Armadio_nav_menu()
                                         ) );
                                      ?>
                                 </div>
@@ -84,6 +89,4 @@
             </nav>
         </div>
     </div>
-
-
 </header>
