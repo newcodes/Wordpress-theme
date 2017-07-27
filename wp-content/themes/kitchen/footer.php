@@ -1,12 +1,12 @@
 <footer id="footer">
-    <div class="footer-information col-sm-12">
-        <div class="map col-xs-4 col-sm-3 col-md-3 col-lg-3">
+    <div class="footer-information col-sm-11">
+        <div class="block-information map col-xs-4 col-sm-3 col-md-3 col-lg-3">
             <div id="map"></div>
             <script async defer
                     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCp4kIA1rpEhdniApOP9DiPwH0Dd4r75PI&callback=initMap">
             </script>
         </div>
-        <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+        <div class="block-information col-xs-4 col-sm-3 col-md-3 col-lg-3">
             <div class="contact">
                 <h3>Contact</h3>
                 <ul>
@@ -26,7 +26,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+        <div class="block-information col-xs-4 col-sm-3 col-md-3 col-lg-3">
             <div id="fb-root"></div>
             <script>(function(d, s, id) {
                     var js, fjs = d.getElementsByTagName(s)[0];
@@ -41,7 +41,7 @@
                 </blockquote>
             </div>
         </div>
-        <div class=" hidden-xs col-sm-3 col-md-3 col-lg-3">
+        <div class="block-information hidden-xs col-sm-3 col-md-3 col-lg-3">
             <div class="info-box">
                 <div class="info-box-header">
                     <h4>Why choose armadio?</h4>
