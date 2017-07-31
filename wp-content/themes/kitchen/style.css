@@ -52,14 +52,14 @@ body {
       appearance: none;
       line-height: 1;
       outline: 0;
-      color: #fff;
+      color: #2c3e50;
       padding: 0.65em 2.5em 0.55em 0.75em;
       border-radius: 3px;
-      background: linear-gradient(#fff, #fff) no-repeat,
-                  linear-gradient(-135deg, rgba(255,255,255,0) 50%, #2c3e50 50%) no-repeat,
-                  linear-gradient(-225deg, rgba(255,255,255,0) 50%, #2c3e50 50%) no-repeat,
-                  linear-gradient(#27BC66, #27BC66) no-repeat;
-      background-color: #2c3e50;
+      background: linear-gradient(#2c3e50, #2c3e50 ) no-repeat,
+                  linear-gradient(-135deg, rgba(255,255,255,0) 50%, #bac4c5 50%) no-repeat,
+                  linear-gradient(-225deg, rgba(255,255,255,0) 50%, #bac4c5 50%) no-repeat,
+                  linear-gradient(#2c3e50 , #2c3e50 ) no-repeat;
+      background-color: #bac4c5;
       background-size: 1px 100%, 20px 20px, 20px 20px, 20px 60%;
       background-position: right 20px center, right bottom, right bottom, right bottom;   
 }
@@ -99,7 +99,7 @@ header .social ul {
 }
 
 header .social li a {
-    background: #61727b;
+    background: #bac4c5;
     color: #2c3e50 !important;
 }
 
@@ -178,7 +178,6 @@ header .social li a:hover {
         margin: 0 auto;
         text-align: center;
         display: block;
-        width: 152px;
     }
     
     .mobnav-button {
@@ -251,26 +250,34 @@ header .social li a:hover {
     }
     
     #manu-main-menu > li.mobile-menu  > ul.sub-menu {
-        max-height: 0px;
+        max-height: 0px!important;
         
-        -webkit-transition: max-height 0.2s linear;
-        -ms-transition: max-height 0.2s linear;
-        -o-transition: max-height 0.2s linear;
-        transition: max-height 0.2s linear;
+        -webkit-transition: max-height 1s linear;
+        -ms-transition: max-height 1s linear;
+        -o-transition: max-height 1s linear;
+        transition: max-height 1s linear;
+    }
+    
+    #menu-main-menu > li.mobile-menu-is-open1 {
+        background: #2ecc71;
+    }
+    
+    #menu-main-menu > li.mobile-menu-is-close1, #menu-main-menu > li.mobile-menu-is-close1 > a {
+        background: #2c3e50!important;
     }
     
     #menu-main-menu > li.mobile-menu-is-open1 > ul.sub-menu {
-        max-height: 500px;
+        max-height: 500px!important;
     }
     
     #menu-main-menu > li.mobile-menu-is-close1 > ul.sub-menu {
-        max-height: 0px;
+        max-height: 0px!important;
+        
+        -webkit-transition: max-height .4s linear;
+        -ms-transition: max-height .4s linear;
+        -o-transition: max-height .4s linear;
+        transition: max-height .4s linear;
     }
-    
-    #menu-main-menu > li.mobile-menu-is-close1 {
-/*        background: #2c3e50;*/
-    }
-
     
 }
 
@@ -569,3 +576,16 @@ header .social li a:hover {
 }
 
 
+/*Galery page*/
+
+#galery img {
+    width: 100%;
+}
+
+#galery > div {
+    max-height: 50vh;
+    overflow: hidden;
+    margin-bottom: 3px;
+    padding: 0px;
+    
+}

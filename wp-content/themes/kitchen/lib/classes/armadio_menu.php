@@ -39,7 +39,7 @@ class Armadio_nav_menu extends Walker_Nav_Menu {
 		}
         
         if (wp_is_mobile()){
-            $classes[] = 'mobile-menu';
+            $classes[] = 'mobile-menu mobile-menu-is-close1';
         }
 		
 		$class_names = join(' ', apply_filters('nav_menu_css_class', array_filter($classes), $item, $args));

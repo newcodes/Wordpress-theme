@@ -12,6 +12,8 @@ function armadio_enqueue_scripts() {
     wp_enqueue_script('jquery', get_template_directory_uri().'/lib/jquery-3.2.1.min.js', '', true );
     wp_enqueue_script('bootstrap', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', $dependencies, true );
     
+    wp_enqueue_script('contact-maps', get_template_directory_uri() . '/js/contact-maps.js');
+    
     wp_deregister_script( 'common' );
     wp_register_script('common', get_template_directory_uri().'/lib/js/common.js', $dependencies);
     wp_enqueue_script('common');
@@ -19,7 +21,7 @@ function armadio_enqueue_scripts() {
    
 }
 
-wp_enqueue_script('contact-maps', get_template_directory_uri() . '/js/contact-maps.js');
+
 
 add_action( 'wp_enqueue_scripts', 'armadio_enqueue_styles' );
 add_action( 'wp_enqueue_scripts', 'armadio_enqueue_scripts' );
@@ -71,51 +73,8 @@ function armadio_wp_setup() {
 
 add_action( 'after_setup_theme', 'armadio_wp_setup' );
 
-
-//Налаштування теми
-
-add_action("admin_menu", "add_theme_menu_item");
-
-function add_theme_menu_item(){
-	add_menu_page("Theme Panel", "Theme Panel", "manage_options", "theme-panel", "theme_settings_page", null, 99);
-}
-
-function theme_settings_page(){
-    
-    ?>
-	    <div class="wrap">
-	    <h1>Налаштування теми</h1>
-	    <form method="post" action="options.php">
-	        <?php
-	            settings_fields("section");
-	            do_settings_sections("theme-options");      
-	            submit_button(); 
-	        ?>          
-	    </form>
-		</div>
-	<?php
-    
-}
-
-function display_phone(){
-	?>
-    	<input type="text" name="phone_number" id="phone_number" value="<?php echo get_option('phone_number'); ?>" />
-    <?php
-}
-
-add_action("admin_init", "display_theme_panel_fields");
-
-function display_theme_panel_fields(){
-	add_settings_section("section", "Всі налаштування", null, "theme-options");
-	add_settings_field("phone_number", "Номер телефону", "display_phone", "theme-options", "section");
-
-    register_setting("section", "phone_number");
-}
-
-
-add_action("admin_init", "display_theme_panel_fields");
-//Кінець налаштування теми
-
+// Load up our theme options page and related code.
+require( get_template_directory() . '/inc/theme-options.php' );
 
 // Регістрація віджетів
 
@@ -134,4 +93,17 @@ function register_widgets_init() {
 add_action( 'widgets_init', 'register_widgets_init' );
 
 require_once( get_template_directory() . "/lib/classes/armadio_menu.php");
+
+//checking is mobile
+
+function isMobile(){
+   $useragent=$_SERVER['HTTP_USER_AGENT'];
+
+if( wp_is_mobile() ){
+    return true;
+}else {
+    return false;
+}
+}
+
 ?>

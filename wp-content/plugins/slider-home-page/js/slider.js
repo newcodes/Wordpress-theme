@@ -9,7 +9,7 @@ jQuery(function($) {
             this.currentTextEffect = 0;
             this.isEndAnimation = true;
             this.effects = ['book','opendoor', 'blinds'];
-            this.textEffects = ['bridge','gate'];
+            this.textEffects = ['bridge','gate', 'gelicopter'];
 
             if ( $('#slide').attr('data-image-url') ){
                 let arraySrc = $('#slide').attr('data-image-url').split(/;/);
@@ -238,6 +238,7 @@ jQuery(function($) {
                         self.isEndAnimation = false;
                         self.animationTimeout = setTimeout(function(){
                                 self.userControled = false;
+                                nextSlide.css('display','none');
                                 if ( !self.isEndAnimation ){
                                     $('#slide').empty();
                                     self.isEndAnimation = true;
@@ -245,7 +246,6 @@ jQuery(function($) {
                                 }else {
                                     $('#slide').empty();
                                     nextSlide.removeClass('opendoor-animate');
-                                    nextSlide.css('display', 'none');
                                     self.isEndAnimation = true;
                                     return resolve(1);
                                 }
@@ -329,13 +329,20 @@ jQuery(function($) {
                     nextSlide.css({
                         'display':'block'
                     })
+                    
+                    console.log('widthSlide: ' + widthSlide);
+                    console.log('widthSlide/8: ' + widthSlide/8);
+                    console.log('width: ' + width);
+                    
+                    widthSlide = widthSlide - 1;
+
                     for (let i = 0; i < 8; i++ ){
 
                         let blind = $('<div class="blind"></div>');
                         let position = i == 0 ? 0 : widthSlide / 8 * (i);
 
                             blind.css({
-                                width: widthSlide / 8,
+                                width: widthSlide / 8 ,
                                 height: height,
                                 'z-index':'10',
                                 'background-position-x': -position,
@@ -349,6 +356,7 @@ jQuery(function($) {
                     $('.blind').addClass('blind-animation-next');
 
                     self.isEndAnimation = false;
+                    
 
                     self.animationTimeout = setTimeout( function(){
 
@@ -379,10 +387,10 @@ jQuery(function($) {
 
         effectText( name ){
             let self = this;
-
+            
             return new Promise(function(resolve, reject){
 
-                if (self.arrayText[self.currentSlide] && self.arrayText2[self.currentSlide]){
+                if (self.arrayText[self.currentSlide - 2] && self.arrayText2[self.currentSlide - 2]){
 
 
                     let slide = $("#slide");
@@ -398,11 +406,11 @@ jQuery(function($) {
                     let firstText = $('<div class="slider-text-one"></div>');
                     let spanOne = $('<span></span>');
                     let spanTwo = $('<span></span>');
-                    spanOne.text(self.arrayText[self.currentSlide]);
+                    spanOne.text(self.arrayText[self.currentSlide - 2]);
                     firstText.append(spanOne);
                     slide.append(firstText);
                     let secondText = $('<div class="slider-text-two"></div>');
-                    spanTwo.text(self.arrayText2[self.currentSlide]);
+                    spanTwo.text(self.arrayText2[self.currentSlide - 2]);
                     secondText.append(spanTwo);
                     slide.append(secondText);
                     if ( name == 'bridge') {
@@ -415,6 +423,9 @@ jQuery(function($) {
                         let indentLeft = width > 600 ? '20vw' : '2vw';
                         firstText.addClass('gate-animation-first-text').css('left', indentLeft);
                         secondText.addClass('gate-animation-second-text').css('left', indentLeft);
+                    }else if ( name == 'gelicopter'){
+                        firstText.addClass('gelicopter-animation-text').css({'top':'30%', 'margin': '0 auto', 'textAlign': 'center'});
+                        secondText.addClass('gelicopter-animation-text').css({'top':'40%', 'margin': '0 auto', 'textAlign': 'center'});
                     }
 
                 } 
