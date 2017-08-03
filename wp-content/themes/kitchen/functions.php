@@ -4,6 +4,10 @@ function armadio_enqueue_styles() {
     wp_register_style('bootstrap', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' );
     $dependencies = array('bootstrap');
 	wp_enqueue_style( 'armadio-style', get_stylesheet_uri(), $dependencies );
+    
+    if ( is_page_template('galery.php') ){
+        wp_enqueue_style( 'galery_css',  get_template_directory_uri() . '/lib/css/galery.css', $dependencies );
+    }
 }
 
 function armadio_enqueue_scripts() {
@@ -14,11 +18,15 @@ function armadio_enqueue_scripts() {
     
     wp_enqueue_script('contact-maps', get_template_directory_uri() . '/js/contact-maps.js');
     
+    if ( is_page_template('galery.php') ){
+        wp_deregister_script( 'galery' );
+        wp_register_script('galery', get_template_directory_uri().'/lib/js/galery.js', $dependencies);
+        wp_enqueue_script('galery');
+    }
+    
     wp_deregister_script( 'common' );
     wp_register_script('common', get_template_directory_uri().'/lib/js/common.js', $dependencies);
     wp_enqueue_script('common');
-    
-   
 }
 
 
@@ -93,17 +101,5 @@ function register_widgets_init() {
 add_action( 'widgets_init', 'register_widgets_init' );
 
 require_once( get_template_directory() . "/lib/classes/armadio_menu.php");
-
-//checking is mobile
-
-function isMobile(){
-   $useragent=$_SERVER['HTTP_USER_AGENT'];
-
-if( wp_is_mobile() ){
-    return true;
-}else {
-    return false;
-}
-}
 
 ?>

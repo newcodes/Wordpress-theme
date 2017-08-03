@@ -29,7 +29,7 @@ $outer_html .= '<div class="content-galery row col-sm-11 col-centered"><h1> Gale
 $count = 1;
 
 if( wp_is_mobile() ) {
-    $outer_html .= '<div id="galery" class="galery-mobile row col-sm-11 col-centered">';
+    $outer_html .= '<div id="galery" class="row col-sm-11 col-centered">';
 
     foreach ( $attachments as $attachment ) {
     
@@ -46,16 +46,22 @@ if( wp_is_mobile() ) {
             case 1:
             case 2:
                 $image_url = wp_get_attachment_image_src( $attachment->ID, 'medium' );
+                $image_thumb = wp_get_attachment_image_src( $attachment->ID, 'thumbnail' );
+                $image_full = wp_get_attachment_image_src( $attachment->ID, 'medium' );
                 $outer_html .= '<div class="col-xs-6">';
                 break;
             case 3:
                 $image_url = wp_get_attachment_image_src( $attachment->ID, 'large' );
+                $image_thumb = wp_get_attachment_image_src( $attachment->ID, 'thumbnail' );
+                $image_full = wp_get_attachment_image_src( $attachment->ID, 'medium' );
                 $outer_html .= '<div class="col-xs-12">';
                 break;
             case 4:
             case 5:
             case 6:
                 $image_url = wp_get_attachment_image_src( $attachment->ID, 'medium' );
+                $image_thumb = wp_get_attachment_image_src( $attachment->ID, 'thumbnail' );
+                $image_full = wp_get_attachment_image_src( $attachment->ID, 'medium' );
                 $outer_html .= '<div class="col-xs-4">';
                 break;
             case 7:
@@ -63,22 +69,21 @@ if( wp_is_mobile() ) {
             case 9:
             case 10:
                 $image_url = wp_get_attachment_image_src( $attachment->ID, 'medium' );
+                $image_thumb = wp_get_attachment_image_src( $attachment->ID, 'thumbnail' );
+                $image_full = wp_get_attachment_image_src( $attachment->ID, 'medium' );
                 $outer_html .= '<div class="col-xs-3">';
                 break;
             default:
-                $image_url = wp_get_attachment_image_src( $attachment->ID, 'large' );
+                $image_url = wp_get_attachment_image_src( $attachment->ID, 'medium' );
+                $image_thumb = wp_get_attachment_image_src( $attachment->ID, 'thumbnail' );
+                $image_full = wp_get_attachment_image_src( $attachment->ID, 'medium' );
                 $outer_html .= '<div class="col-xs-12">';
 
         }
 
-
-
-
         $outer_html .= '<div class="item-picture" data-type="image">';
-        $outer_html .= '<img src="' . $image_url[0] . '" alt="'. $image_alt .'">' ;
+        $outer_html .= '<a href="#" class="galery-pop" data-image="'. $image_full[0] . '" data-thumb="'. $image_thumb[0] . '"><img src="' . $image_url[0] . '" alt="'. $image_alt .'"></a>' ;
         $outer_html .= '<div class="image-overlay">';
-        $outer_html .= '<a href="' . $image_url[0] . '" data-rel="prettyPhoto[gallery]">
-              <span class="zoom"></span></a>';
         $outer_html .= '</div>';
 //        $outer_html .= '<span class="item-label">' . $image_title . '</span>';
         $outer_html .= '</div>';
@@ -108,16 +113,22 @@ if( wp_is_mobile() ) {
             case 1:
             case 2:
                 $image_url = wp_get_attachment_image_src( $attachment->ID, 'large' );
+                $image_thumb = wp_get_attachment_image_src( $attachment->ID, 'thumbnail' );
+                $image_full = wp_get_attachment_image_src( $attachment->ID, 'full' );
                 $outer_html .= '<div class="col-xs-6">';
                 break;
             case 3:
                 $image_url = wp_get_attachment_image_src( $attachment->ID, 'full' );
+                $image_thumb = wp_get_attachment_image_src( $attachment->ID, 'thumbnail' );
+                $image_full = wp_get_attachment_image_src( $attachment->ID, 'full' );
                 $outer_html .= '<div class="col-xs-12">';
                 break;
             case 4:
             case 5:
             case 6:
                 $image_url = wp_get_attachment_image_src( $attachment->ID, 'large' );
+                $image_thumb = wp_get_attachment_image_src( $attachment->ID, 'thumbnail' );
+                $image_full = wp_get_attachment_image_src( $attachment->ID, 'full' );
                 $outer_html .= '<div class="col-xs-4">';
                 break;
             case 7:
@@ -125,19 +136,21 @@ if( wp_is_mobile() ) {
             case 9:
             case 10:
                 $image_url = wp_get_attachment_image_src( $attachment->ID, 'medium' );
+                $image_thumb = wp_get_attachment_image_src( $attachment->ID, 'thumbnail' );
+                $image_full = wp_get_attachment_image_src( $attachment->ID, 'full' );
                 $outer_html .= '<div class="col-xs-3">';
                 break;
             default:
                 $image_url = wp_get_attachment_image_src( $attachment->ID, 'full' );
+                $image_thumb = wp_get_attachment_image_src( $attachment->ID, 'thumbnail' );
+                $image_full = wp_get_attachment_image_src( $attachment->ID, 'full' );
                 $outer_html .= '<div class="col-xs-12">';
 
         }
 
         $outer_html .= '<div class="item-picture" data-type="image">';
-        $outer_html .= '<img src="' . $image_url[0] . '" alt="'. $image_alt .'">' ;
+        $outer_html .= '<a href="#" class="galery-pop" data-image="'. $image_full[0] . '" data-thumb="'. $image_thumb[0] . '"><img src="' . $image_url[0] . '" alt="'. $image_alt .'"></a>' ;
         $outer_html .= '<div class="image-overlay">';
-        $outer_html .= '<a href="' . $image_url[0] . '" data-rel="prettyPhoto[gallery]">
-              <span class="zoom"></span></a>';
         $outer_html .= '</div>';
 //        $outer_html .= '<span class="item-label">' . $image_title . '</span>';
         $outer_html .= '</div>';

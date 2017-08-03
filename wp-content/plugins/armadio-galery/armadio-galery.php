@@ -35,4 +35,11 @@ function run_armadio_galery() {
 	$plugin = new Armadio_Galery();
 	$plugin->run();
 }
-run_armadio_galery();
+
+//if (is_admin()) {
+//    run_armadio_galery();
+//} elseif ( is_page_template('galery.php') ){
+//    run_armadio_galery();
+//}
+//
+//run_armadio_galery();

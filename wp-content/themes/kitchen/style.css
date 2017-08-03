@@ -585,7 +585,7 @@ header .social li a:hover {
 #galery > div {
     max-height: 50vh;
     overflow: hidden;
-    margin-bottom: 3px;
+    border: 2px transparent solid;
     padding: 0px;
-    
 }
+
