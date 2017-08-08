@@ -77,8 +77,9 @@
 
 .slider-wrapper {
     width: 100%;
-    max-width: 1349px;
+/*    max-width: 1349px;*/
     height: 100%;
+    margin: 0 auto;
     left:0px;
     position: relative;
     overflow:hidden;
@@ -581,4 +582,30 @@
 
 .gate-animation-second-text {
     animation: gate-transform-rotate-two 2s forwards;
+}
+
+/* gelicopter*/
+
+.gelicopter-animation-text {
+    animation: gelicopter-transform 2s forwards ease-out;
+}
+
+@-webkit-keyframes gelicopter-transform {
+    0% {
+        -webkit-transform: rotate(0deg) scale(0);
+    }
+    
+    100% {
+        -webkit-transform: rotate(2520deg) scale(1);
+    }
+}
+
+@keyframes gelicopter-transform {
+    0% {
+        transform: rotate(0deg) scale(0);
+    }
+    
+    100% {
+        transform: rotate(2520deg) scale(1);
+    }
 }

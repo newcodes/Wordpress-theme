@@ -11,21 +11,9 @@ License: GPLv2
  
 Copyright 2017  Slider home page
  
-This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License, version 2, as
-published by the Free Software Foundation.
- 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
- 
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-    add_action( 'widgets_init', create_function( '', "register_widget( 'Armadio_Slider_Widget' );" ) );
+add_action( 'widgets_init', create_function( '', "register_widget( 'Armadio_Slider_Widget' );" ) );
  
 class Armadio_Slider_Widget extends WP_Widget {
     
@@ -50,11 +38,6 @@ class Armadio_Slider_Widget extends WP_Widget {
  
     /**  
      * Front-end display of widget.
-     *
-     * @see WP_Widget::widget()
-     *
-     * @param array $args     Widget arguments.
-     * @param array $instance Saved values from database.
      */
     public function widget( $args, $instance ) {
          
@@ -67,17 +50,14 @@ class Armadio_Slider_Widget extends WP_Widget {
         wp_register_style('myStyleSheets',  plugin_dir_url( __FILE__ ) . '/css/style.css');
         wp_enqueue_style( 'myStyleSheets');
          
-        if ( $title ) {
-            echo $before_title . $title . $after_title;
-        }
         
         ?>
         <div id='slider'>                   
             <div class='slider-wrapper'>
                     <?php 
-                    $tmpImageUrl;
-                    $tmpText;
-                    $tmpText2;
+                    $tmpImageUrl = '';
+                    $tmpText = '';
+                    $tmpText2 = '';
         
                     for ($i=0; $i < $count + 1; $i++){ 
                         $tmp_val =  esc_attr( isset( $instance['images1'.$i] ) ? $instance['images1'.$i] : '' );
@@ -109,13 +89,6 @@ class Armadio_Slider_Widget extends WP_Widget {
   
     /**
       * Sanitize widget form values as they are saved.
-      *
-      * @see WP_Widget::update()
-      *
-      * @param array $new_instance Values just sent to be saved.
-      * @param array $old_instance Previously saved values from database.
-      *
-      * @return array Updated safe values to be saved.
       */
     public function update( $new_instance, $old_instance ) {        
          
@@ -140,10 +113,6 @@ class Armadio_Slider_Widget extends WP_Widget {
   
     /**
       * Back-end widget form.
-      *
-      * @see WP_Widget::form()
-      *
-      * @param array $instance Previously saved values from database.
       */
     public function form( $instance ) {    
      
@@ -173,9 +142,6 @@ class Armadio_Slider_Widget extends WP_Widget {
                     }else {
                         $text2 = '';
                     }
-
-                    
-                    
                     
                     $form .= '<div class="container-image"><div class="slider_text">'.$imagePreview
                          . sprintf(
@@ -271,10 +237,7 @@ class Armadio_Slider_Widget extends WP_Widget {
      
 }
 
-
-                  // As you are dealing with plugin settings,
-            // I assume you are in admin side
-            add_action( 'admin_enqueue_scripts', 'load_wp_media_files' );
+        add_action( 'admin_enqueue_scripts', 'load_wp_media_files' );
             function load_wp_media_files( $page ) {
               // change to the $page where you want to enqueue the script
               if( $page == 'options-general.php' ) {
