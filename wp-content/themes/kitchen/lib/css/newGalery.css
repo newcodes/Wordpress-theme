@@ -5,6 +5,10 @@
 
 /*Galery page*/
 
+.content-galery{
+    text-align: center;
+}
+
 #galery img {
     width: 100%;
 }

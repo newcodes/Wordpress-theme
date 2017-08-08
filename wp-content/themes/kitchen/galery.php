@@ -14,6 +14,7 @@ get_header(); ?>
 
 <?php 
 
+
 $gallery = get_post_gallery( get_the_ID(), false );
 $args = array( 
     'post_type'      => 'attachment', 
@@ -23,8 +24,16 @@ $args = array(
 ); 
 $attachments = get_posts( $args );
 
+
 $outer_html = '';
-$outer_html .= '<div class="content-galery row col-sm-11 col-centered"><h1> Galery page </h1></div>';
+$outer_html .= '<div class="content-galery row col-sm-11 col-centered">';
+
+ foreach ($custom_fields['fields'] as $field) {
+     $meta = get_post_meta($post->ID, $field['id'], true);
+     $outer_html .=  '<h1>'.$meta.'</h1>';
+ }
+
+$outer_html .= '</div>';
 
 $count = 1;
 
