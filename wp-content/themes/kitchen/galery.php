@@ -105,6 +105,8 @@ if( wp_is_mobile() ) {
         }
     }
     
+    $outer_html .= '</div>';
+    
 }else{
     $outer_html .= '<div id="galery" class="row col-sm-11 col-centered">';
 
@@ -180,6 +182,8 @@ if( wp_is_mobile() ) {
             $count = 1;
         }
     }
+    
+    $outer_html .= '</div>';
 }
 
 $outer_html .= '</div>';
