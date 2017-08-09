@@ -4,12 +4,11 @@
  *
  */
 
-get_header(); ?>
-<br/>
-<br/>
-<br/>
-<br/>
+get_header(); 
 
+set_query_var( 'custom_fields',  $custom_fields );
+get_template_part( 'template-parts/galery', 'subheader' );
+?>
 
 
 <?php 
@@ -26,14 +25,7 @@ $attachments = get_posts( $args );
 
 
 $outer_html = '';
-$outer_html .= '<div class="content-galery row col-sm-11 col-centered">';
-
- foreach ($custom_fields['fields'] as $field) {
-     $meta = get_post_meta($post->ID, $field['id'], true);
-     $outer_html .=  '<h1>'.$meta.'</h1>';
- }
-
-$outer_html .= '</div>';
+$outer_html .= '<div class="content-galery row col-sm-11 col-centered"></div>';
 
 $count = 1;
 
