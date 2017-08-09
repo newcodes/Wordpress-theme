@@ -10,3 +10,6 @@
         </div>
     </div>
 </div>
+<div class='row'>
+    <?php if (function_exists('breadcrumbs')) breadcrumbs(); ?>
+</div>

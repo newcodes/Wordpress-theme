@@ -32,6 +32,25 @@ body {
     margin-right: 0px;
 }
 
+
+/* breadcrumbs */ 
+
+.home {
+    background: url(images/breadcrumbs_home.png);
+    background-repeat: no-repeat;
+    background-position: left center;
+    padding-left: 30px;
+}
+
+.breadcrumbs {
+    padding: 10px 15px;
+}
+
+.breadcrumbs a, .breadcrumbs .current {
+    color: #99AEB0;
+    font-size: 12px;
+}
+
 /*
  *  Header
  */
