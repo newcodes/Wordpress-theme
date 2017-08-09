@@ -35,7 +35,7 @@ body {
 
 /* breadcrumbs */ 
 
-.home {
+.breadcrumbs .home {
     background: url(images/breadcrumbs_home.png);
     background-repeat: no-repeat;
     background-position: left center;

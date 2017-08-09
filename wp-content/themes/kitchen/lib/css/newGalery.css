@@ -9,6 +9,11 @@
     text-align: center;
 }
 
+#galery {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
 #galery img {
     width: 100%;
 }
