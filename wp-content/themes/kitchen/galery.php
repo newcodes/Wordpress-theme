@@ -4,15 +4,15 @@
  *
  */
 
-get_header(); ?>
-<br/>
-<br/>
-<br/>
-<br/>
+get_header(); 
 
+set_query_var( 'custom_fields',  $custom_fields );
+get_template_part( 'template-parts/galery', 'subheader' );
+?>
 
 
 <?php 
+
 
 $gallery = get_post_gallery( get_the_ID(), false );
 $args = array( 
@@ -23,8 +23,9 @@ $args = array(
 ); 
 $attachments = get_posts( $args );
 
+
 $outer_html = '';
-$outer_html .= '<div class="content-galery row col-sm-11 col-centered"><h1> Galery page </h1></div>';
+$outer_html .= '<div class="content-galery row col-sm-11 col-centered"></div>';
 
 $count = 1;
 
