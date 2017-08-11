@@ -60,6 +60,16 @@ function armadio_wp_setup() {
     
     load_theme_textdomain( 'armadio', get_template_directory() . '/languages' );
     
+    if ( function_exists( 'add_theme_support' ) ) {
+        add_theme_support( 'post-thumbnails' );
+            set_post_thumbnail_size( 55, 55 ); // размер миниатюры поста по умолчанию
+    }
+
+    if ( function_exists( 'add_image_size' ) ) {
+        add_image_size( 'kitchen-thumb', 55, 55, true ); // Кадрирование изображения
+    }
+
+    
     add_theme_support( 'html5', array(
 		'search-form',
 		'comment-form',
@@ -110,7 +120,7 @@ $prefix = 'armadio_';
 $custom_fields = array(
     'id' => 'custom-fields',
     'title' => 'Додаткові данні',
-    'page' => array('post', 'page', 'link', 'attachment', 'custom_post_type'),
+    'page' => array('page', 'link', 'attachment', 'custom_post_type'),
     'context' => 'normal',
     'priority' => 'high',
     'fields' => array(
@@ -393,6 +403,35 @@ function breadcrumbs() {
 
   }
 } // end of breadcrumbs()
+
+
+// Products fields
+
+function ST4_get_featured_image($post_ID) {
+    $post_thumbnail_id = get_post_thumbnail_id($post_ID);
+    if ($post_thumbnail_id) {
+        $post_thumbnail_img = wp_get_attachment_image_src($post_thumbnail_id, array(15,15));
+        return $post_thumbnail_img[0];
+    }
+}
+
+function ST4_columns_head($defaults) {
+    $defaults['featured_image'] = 'Зображення';
+    return $defaults;
+}
+ 
+// SHOW THE FEATURED IMAGE
+function ST4_columns_content($column_name, $post_ID) {
+    if ($column_name == 'featured_image') {
+        $post_featured_image = ST4_get_featured_image($post_ID);
+        if ($post_featured_image) {
+            echo '<img src="' . $post_featured_image . '" />';
+        }
+    }
+}
+
+add_filter('manage_posts_columns', 'ST4_columns_head');
+add_action('manage_posts_custom_column', 'ST4_columns_content', 10, 2);
 
 
 

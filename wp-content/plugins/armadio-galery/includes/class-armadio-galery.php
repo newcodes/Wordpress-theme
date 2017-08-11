@@ -48,8 +48,9 @@ class Armadio_Galery {
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-		$this->loader->add_action( 'admin_menu', $plugin_admin, 'build_form_text_galery');
+		$this->loader->add_action( 'admin_menu', $plugin_admin, 'build_admin_menu');
 		$this->loader->add_action( 'widgets_init', $plugin_admin, 'tutsplus_widgets_init');
+		$this->loader->add_action( 'init', $plugin_admin, 'init_post_type');
 	}
 
 	private function define_public_hooks() {

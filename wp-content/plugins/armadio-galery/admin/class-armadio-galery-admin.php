@@ -14,21 +14,66 @@ class Armadio_Galery_Admin {
 
 	public function enqueue_styles() {
 
-//		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/armadio-galery-admin.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/armadio-galery-admin.css', array(), $this->version, 'all' );
 
 	}
 
 	public function enqueue_scripts() {
 
-//		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/armadio-galery-admin.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/armadio-galery-admin.js', array( 'jquery' ), $this->version, false );
 
 	}
     
-    public function build_form_text_galery(){
-        add_options_page('Галерея', 'Галерея', 8, 'galery', array(
-				$this,
-				'galery_option_page'
-			));
+    public function build_admin_menu(){
+        add_menu_page( 'Продукти', 'Продукти', 'manage_options', 'products', array( $this, 'settings_product_page' ), '', 4 ); 
+    }
+    
+    public function settings_product_page(){
+        ?>
+        <div class="wrap">
+            <h2><?php echo get_admin_page_title() ?></h2>
+
+            <?php
+            // settings_errors() не срабатывает автоматом на страницах отличных от опций
+            if( get_current_screen()->parent_base !== 'options-general' )
+                settings_errors('название_опции');
+            ?>
+
+            <form action="options.php" method="POST">
+                <?php
+                    settings_fields("opt_group");     // скрытые защитные поля
+                    do_settings_sections("opt_page"); // секции с настройками (опциями).
+                    submit_button();
+                ?>
+            </form>
+        </div>
+        <?php
+    }
+    
+    public function init_post_type(){
+
+        $labels = [
+        'name'              => _x('Kitchens', 'taxonomy general name'),
+        'singular_name'     => _x('Kitchen', 'taxonomy singular name'),
+        'search_items'      => __('Search Kitchens'),
+        'all_items'         => __('All Kitchens'),
+        'parent_item'       => __('Parent Kitchens'),
+        'parent_item_colon' => __('Parent Kitchen:'),
+        'edit_item'         => __('Edit Kitchen'),
+        'update_item'       => __('Update Kitchen'),
+        'add_new_item'      => __('Add New Kitchen'),
+        'new_item_name'     => __('New Kitchen Name'),
+        'menu_name'         => __('Kitchen'),
+        ];
+        $args = [
+        'hierarchical'      => true, // make it hierarchical (like categories)
+        'labels'            => $labels,
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'query_var'         => true,
+        'rewrite'           => ['slug' => 'course'],
+        ];
+        register_taxonomy('course', ['post'], $args);
     }
     
     public function galery_option_page(){
