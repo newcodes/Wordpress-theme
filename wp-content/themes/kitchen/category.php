@@ -6,17 +6,8 @@ set_query_var( 'title',  single_cat_title( '', false ) );
 get_template_part( 'template-parts/category', 'subheader' );
 ?>
 
-<?php
-/**
-03
-* A Simple Category Template
-04
-*/
-get_header(); ?>
 <section id="primary" class="site-content col-xs-11 col-centered">
 <div id="content" role="main">
-    
-
     
 <?php
     
@@ -25,6 +16,13 @@ get_header(); ?>
     $this_category = get_category( get_query_var( 'cat' ) );
     $child_categories=get_categories( array( 'child_of' => $this_category->cat_ID, 'taxonomy' => 'category'));
     
+	?>
+
+	<div class='desctiption'>
+		<?php echo category_description( get_query_var( 'cat' ) ); ?>
+	</div>
+
+	<?php
      foreach($child_categories as $category) { 
             $category_url = get_category_link( $category->term_id );
             $category_name = $category->cat_name;
