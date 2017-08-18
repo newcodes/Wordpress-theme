@@ -318,7 +318,7 @@ jQuery(function($){
         }
     }
     
-    $(document).ready(function(){
+    $(document).ready(function () {
         
         $.fn.slider = function( customOptions ){
             let galeryObj = new Galery();
@@ -331,8 +331,9 @@ jQuery(function($){
             
         }
         
-        $('#galery').slider();
-    
+        $('#galery').slider();   
     });
+
+    
  
 });

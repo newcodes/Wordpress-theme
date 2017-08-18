@@ -57,17 +57,10 @@ function armadio_wp_setup() {
     add_theme_support( 'title-tag' );
     
     add_theme_support('widgets');
-    
+	add_theme_support( 'post-thumbnails' );
+    add_image_size( 'galery-thumb-1', 600, 600, true );
     load_theme_textdomain( 'armadio', get_template_directory() . '/languages' );
     
-    if ( function_exists( 'add_theme_support' ) ) {
-        add_theme_support( 'post-thumbnails' );
-            set_post_thumbnail_size( 55, 55 ); // размер миниатюры поста по умолчанию
-    }
-
-    if ( function_exists( 'add_image_size' ) ) {
-        add_image_size( 'kitchen-thumb', 55, 55, true ); // Кадрирование изображения
-    }
 
     
     add_theme_support( 'html5', array(
@@ -434,5 +427,11 @@ add_filter('manage_posts_columns', 'ST4_columns_head');
 add_action('manage_posts_custom_column', 'ST4_columns_content', 10, 2);
 
 
-
+// Register the three useful image sizes for use in Add Media modal
+add_filter( 'image_size_names_choose', 'galery_custom_sizes' );
+function galery_custom_sizes( $sizes ) {
+    return array_merge( $sizes, array(
+        'galery-thumb-1' => __( 'Галерея (продовгувата в висоту)' ),
+    ) );
+}
 ?>
