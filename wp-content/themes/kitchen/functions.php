@@ -114,7 +114,7 @@ $prefix = 'armadio_';
 $custom_fields = array(
     'id' => 'custom-fields',
     'title' => 'Додаткові данні',
-    'page' => array('page', 'link', 'attachment', 'custom_post_type'),
+    'page' => array('post', 'page', 'link', 'attachment', 'custom_post_type'),
     'context' => 'normal',
     'priority' => 'high',
     'fields' => array(
@@ -123,6 +123,13 @@ $custom_fields = array(
             'desc' => 'Введіть заголовок сторінки.',
             'id' => $prefix . 'h1',
             'type' => 'text',
+            'std' => ''
+        ),
+		array(
+            'name' => '',
+            'desc' => 'Добавити фотографії кухні',
+            'id' => $prefix . 'images_kitchen',
+            'type' => 'image',
             'std' => ''
         )
     )
@@ -171,12 +178,169 @@ function show_custom_fields() {
             case 'checkbox':
                 echo '<input type="checkbox" name="', $field['id'], '" id="', $field['id'], '"', $meta ? ' checked="checked"' : '', ' />';
                 break;
+			case 'image':
+				if (get_current_screen()->post_type == 'post'){
+					$meta_count_image = get_post_meta($post->ID, $field['id'].'_count', true);
+					echo ' <p>
+							<label for="', $field['id'], '">Загрузити фотографії</label><br>
+							<input type="hidden" name="', $field['id'], '" id="', $field['id'], '" class="meta-kitchen-image regular-text" value="', $meta, '">
+							<input type="hidden" name="', $field['id'].'_count', '" id="', $field['id'].'_count', '" class="count-images" value="', $meta_count_image ? $meta_count_image : 0, '">
+							<div id="kitchen-image-wrapper">';
+						
+								for ($i = 1; $i <= $meta_count_image; $i++){
+									$strId = $field['id'].'_'.$i;
+									$meta_field_image = get_post_meta($post->ID, $strId , true);
+									if ($meta_field_image){
+										$prefix = '_'.$i;
+										echo '<div id="armadio_image', $prefix, '">';
+											echo wp_get_attachment_image ( $meta_field_image, 'thumbnail' );
+											echo '<input type="hidden" class="added-field" id="', $field['id'].$prefix, '" name="', $field['id'].$prefix, '" value="',$meta_field_image,'"/>';
+											echo '<input type="button" class="button button-secondary ct_tax_media_button"  id="', 'ct_tax_media_button'.$prefix, '" name="', 'ct_tax_media_button'.$prefix, '" data-add-id="armadio_images_kitchen', $prefix, '" value="Вставити картинку" />';
+											echo '<input type="button" class="button button-secondary ct_tax_media_remove_field"  id="', 'ct_tax_media_remove_field'.$prefix, '" name="', 'ct_tax_media_remove_field'.$prefix, '" data-remove-id="armadio_images_kitchen', $prefix, '" value="Удалити поле" />';
+										echo '</div>';
+									}
+								
+								
+								}				
+							echo '</div></p>';
+                
+					echo '<p>
+							 <input type="button" class="button button-secondary ct_tax_media_add_field" id="ct_tax_media_add_field" name="ct_tax_media_add_field" value="Добавити поле" />
+						  </p>';
+
+				}
+				break;
         }
         echo     '</td><td>',
             '</td></tr>';
     }
 
     echo '</table>';
+	?>
+
+	<script>
+    jQuery(document).ready(function ($) {
+		function ct_media_upload(button_class) {
+			var _custom_media = true,
+				_orig_send_attachment = wp.media.editor.send.attachment;
+			$('body').on('click', button_class, function (e) {
+				var button_id = '#' + $(this).attr('id');
+				let fieldId = '#' + $(button_id).attr('data-add-id');
+				var send_attachment_bkp = wp.media.editor.send.attachment;
+				var button = $(button_id);
+				_custom_media = true;
+				wp.media.editor.send.attachment = function (props, attachment) {
+					if (_custom_media) {
+						$(fieldId).attr('value', attachment.id);
+						let image = $('<img class="custom_media_image" src="" style="margin:0;padding:0;max-height:100px;float:none;" />');
+						image.attr('src', attachment.sizes.thumbnail.url).css('display', 'block');
+						
+						$(fieldId).after(image);
+						
+					} else {
+						return _orig_send_attachment.apply(button_id, [props, attachment]);
+					}
+				}
+				wp.media.editor.open(button);
+				return false;
+			});
+		}
+		ct_media_upload('.ct_tax_media_button.button');
+		$('body').on('click', '.ct_tax_media_remove', function () {
+			$('.meta-kitchen-image').val('');
+			$('#kitchen-image-wrapper').html('<img class="custom_media_image" src="" style="margin:0;padding:0;max-height:100px;float:none;" />');
+		});
+
+		$('body').on('click', '.ct_tax_media_add_field', function(){
+			let count = $('#armadio_images_kitchen_count').attr('value');
+			let freeField = getFreeField(count);
+			$('#armadio_images_kitchen_count').attr('value', ++count);
+			
+			let wrapperDiv = $('<div></div>');
+			wrapperDiv.attr('id', 'armadio_image_' + freeField);
+
+			let newField = $("<input type='hidden' class='added-field'/> ");
+			newField.attr('name', 'armadio_images_kitchen_' + freeField);
+			newField.attr('id', 'armadio_images_kitchen_' + freeField);
+			newField.attr('value', '');
+
+			let newFieldRemoveBtn = $('<input type="button" class="button button-secondary ct_tax_media_remove_field" value="Удалити поле" /></br>');
+			newFieldRemoveBtn.attr('data-remove-id', 'armadio_images_kitchen_' + freeField);
+			newFieldRemoveBtn.attr('name', 'ct_tax_media_remove_field_' + freeField);
+
+			let newImageUpdateBtn = $('<input type="button" class="button button-secondary ct_tax_media_button" value="Вставити картинку" />');
+			newImageUpdateBtn.attr('id', 'ct_tax_media_button_' + freeField);
+			newImageUpdateBtn.attr('name', 'ct_tax_media_button_' + freeField);
+			newImageUpdateBtn.attr('data-add-id', 'armadio_images_kitchen_' + freeField);
+
+			let newImageRemoveBtn = $('<input type="button" class="button button-secondary ct_tax_media_remove" value="Удалити картинку" />');
+			newImageRemoveBtn.attr('data-remove-id', 'armadio_images_kitchen_' + freeField);
+			newImageRemoveBtn.attr('id', 'ct_tax_media_remove_' + freeField);
+			newImageRemoveBtn.attr('name', 'ct_tax_media_remove_' + freeField);
+			
+			wrapperDiv.append(newField);
+			wrapperDiv.append(newImageUpdateBtn);
+			wrapperDiv.append(newFieldRemoveBtn);
+			$('#kitchen-image-wrapper').append(wrapperDiv);
+		
+		});
+
+		$('body').on('click', '.ct_tax_media_remove_field', function(){
+			let count = $('#armadio_images_kitchen_count').attr('value');
+			$('#armadio_images_kitchen_count').attr('value', --count);
+			let id = $(this).attr('data-remove-id');
+			$('#' + id).remove();
+			$(this).parent().remove();
+		});
+
+		function getFreeField(count){
+			let allFields = $('.added-field');
+			let freeItem = 0;
+
+			let items = [];
+			let currentItems = [];
+
+			for (var i = 1; i <= count; i++) {
+			   items.push(i);
+			}
+
+			allFields.each(function() {
+				let index = $( this ).attr('id').slice(23);
+				currentItems.push(parseInt(index));
+			});
+
+			for ( var i = 0; i < items.length; i++ ) {
+				let fined = false;
+				for ( var e = 0; e < currentItems.length; e++ ) {
+					if ( items[i] === currentItems[e] ) fined = true;
+				}
+
+				if (!fined){
+					freeItem = items[i];
+					break;
+				}
+			}
+
+			return freeItem == 0 ? ++count : freeItem;
+			
+		}
+
+
+		$(document).ajaxComplete(function (event, xhr, settings) {
+			var queryStringArr = settings.data.split('&');
+			if ($.inArray('action=add-tag', queryStringArr) !== -1) {
+				var xml = xhr.responseXML;
+				$response = $(xml).find('term_id').text();
+				if ($response != "") {
+					// Clear the thumb image
+					
+				}
+			}
+		});
+	});
+  </script>
+
+  <?php
 }
 
 add_action('save_post', 'save_data_custom_fields');
@@ -203,6 +367,35 @@ function save_data_custom_fields($post_id) {
     foreach ($custom_fields['fields'] as $field) {
         $old = get_post_meta($post_id, $field['id'], true);
         $new = $_POST[$field['id']];
+
+		if( get_current_screen()->post_type == 'post' && $field['type'] == 'image' ){
+			$countStr = $field['id'].'_count';
+
+
+			$oldCount = get_post_meta($post_id, $countStr, true);
+			$newCount = $_POST[$countStr];
+			if ($newCount && $newCount != $oldCount) {
+				update_post_meta($post_id, $countStr, $newCount);
+			} elseif ('' == $newCount && $oldCount) {
+				delete_post_meta($post_id, $countStr, $oldCount);
+			}
+
+			$count = $_POST[$countStr];
+
+			for ($i = 1; $i <= $count; $i++) {
+				$imageId = $field['id'].'_'.$i;
+				$oldImage = get_post_meta($post_id, $imageId, true);
+				$newImage = $_POST[$imageId];
+				if ($newImage && $newImage != $oldImage){
+					update_post_meta($post_id, $imageId, $newImage);
+					// add_term_meta( $term_id, $field['id'], $image, true );
+				}elseif('' == $newImage && $oldImage){
+					delete_post_meta($post_id, $imageId, $oldImage);
+				}
+			}
+
+		 
+	   }
 
         if ($new && $new != $old) {
             update_post_meta($post_id, $field['id'], $new);
