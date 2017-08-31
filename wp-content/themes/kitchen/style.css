@@ -738,3 +738,67 @@ header .social li a:hover {
     bottom: 0;
     margin: 0;
 }
+
+
+/** categories style */
+
+.description-category{
+    text-align:center;
+    font-size: 1.5em;
+}
+
+.category-content img.attachment-large {
+    width: 100%;
+    height: 100%;
+}
+
+.category-image img {
+    width: 100%;
+    height: auto;
+}
+
+.child-category-info {
+    text-align: center;
+    padding: 10px;
+}
+
+.child-category-info canvas, .kitchen canvas {
+    opacity: 0;
+    position: absolute;
+}
+
+.child-category-info:hover canvas, .kitchen:hover canvas {
+    opacity: 1;
+}
+
+.kitchen-image {
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+.kitchen-image img {
+    width: 100%;
+    height: auto;
+}
+
+.kitchen-image:nth-child(2n), .kitchen-image img:nth-child(2n+1) {
+}
+
+.kitchen-image:nth-child(2n+1), .kitchen-image img:nth-child(2n) {
+ }
+
+.kitchen-content {
+    text-align: justify;
+}
+
+.kitchen-content:nth-child(2n+1) {
+    padding-right: 10px;
+}
+
+.kitchen-content:nth-child(2n) {
+    padding-left: 10px;
+}
+    
+.kitchen-content h2 {
+    text-align: center;
+}

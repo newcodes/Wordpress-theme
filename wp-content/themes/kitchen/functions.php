@@ -59,6 +59,7 @@ function armadio_wp_setup() {
     add_theme_support('widgets');
 	add_theme_support( 'post-thumbnails' );
     add_image_size( 'galery-thumb-1', 600, 600, true );
+	add_image_size( 'category-thumb', 800, 600, true );
     load_theme_textdomain( 'armadio', get_template_directory() . '/languages' );
     
 
@@ -186,7 +187,7 @@ function save_data_custom_fields($post_id) {
     if (!wp_verify_nonce($_POST['custom_fields_nonce'], basename(__FILE__))) {
         return $post_id;
     }
-
+	
     if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
         return $post_id;
     }
@@ -432,6 +433,7 @@ add_filter( 'image_size_names_choose', 'galery_custom_sizes' );
 function galery_custom_sizes( $sizes ) {
     return array_merge( $sizes, array(
         'galery-thumb-1' => __( 'Галерея (продовгувата в висоту)' ),
+		'category-thumb' => __( 'Категорія' ),
     ) );
 }
 ?>

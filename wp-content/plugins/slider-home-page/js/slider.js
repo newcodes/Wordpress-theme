@@ -252,7 +252,8 @@ jQuery(function($) {
 
                         }, 2000);
 
-                }else if ( name == 'book' ){
+                } else if (name == 'book') {
+
 
                     slide.removeClass('animation-off');
                     nextSlide.removeClass('animation-off');
@@ -327,12 +328,8 @@ jQuery(function($) {
 
                     let widthSlide = $("#nextSlide").width();
                     nextSlide.css({
-                        'display':'block'
+                        'display': 'block'
                     })
-                    
-                    console.log('widthSlide: ' + widthSlide);
-                    console.log('widthSlide/8: ' + widthSlide/8);
-                    console.log('width: ' + width);
                     
                     widthSlide = widthSlide - 1;
 
@@ -356,10 +353,7 @@ jQuery(function($) {
                     $('.blind').addClass('blind-animation-next');
 
                     self.isEndAnimation = false;
-                    
-
-                    self.animationTimeout = setTimeout( function(){
-
+                    self.animationTimeout = window.setTimeout( function(){
                                 $('.blind').removeClass('blind-animation-next'); 
                                 self.userControled = false;
                                 nextSlide.css('display','none');
@@ -439,7 +433,6 @@ jQuery(function($) {
     let mySlide = new Slider();
 
     mySlide.init();
-    mySlide.auto();
 
-
+    setTimeout(function () { mySlide.auto() }, 2000);
 });
