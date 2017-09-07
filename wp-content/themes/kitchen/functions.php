@@ -16,8 +16,8 @@ function armadio_enqueue_scripts() {
     wp_enqueue_script('jquery', get_template_directory_uri().'/lib/jquery-3.2.1.min.js', '', true );
     wp_enqueue_script('bootstrap', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', $dependencies, true );
     
-    wp_enqueue_script('contact-maps', get_template_directory_uri() . '/js/contact-maps.js');
-    
+    wp_enqueue_script('footer-maps', get_template_directory_uri() . '/js/contact-maps.js');
+
     if ( is_page_template('galery.php') ){
         wp_deregister_script( 'newGgalery' );
         wp_register_script('newGalery', get_template_directory_uri().'/lib/js/newGalery.js', $dependencies);

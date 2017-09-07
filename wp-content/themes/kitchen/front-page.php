@@ -64,7 +64,7 @@
     <div class="block-information map col-xs-6 col-sm-4 col-md-3 col-lg-3">
         <div id="map"></div>
         <script async defer
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCp4kIA1rpEhdniApOP9DiPwH0Dd4r75PI&callback=initMap">
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCp4kIA1rpEhdniApOP9DiPwH0Dd4r75PI&callback=initMap1">
         </script>
     </div>
     <div class="block-information col-xs-6 col-sm-4 col-md-3 col-lg-3">
