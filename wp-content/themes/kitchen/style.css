@@ -353,9 +353,17 @@ header .social li a:hover {
     overflow: hidden;
 }
 
-    from { max-height: 0; }
+@-webkit-keyframes smoth-dropdown-menu {
+    from { max-height: 0px; }
 
-    from { max-height: 0; }
+    to { max-height: 300%}
+}
+
+@keyframes smoth-dropdown-menu {
+    from { max-height: 0px; }
+
+    to { max-height: 300% }
+}
 
 .menu-item:hover > a {
     background: #2ecc71;
