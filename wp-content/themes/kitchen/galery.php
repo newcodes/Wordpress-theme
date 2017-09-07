@@ -4,15 +4,15 @@
  *
  */
 
-get_header(); ?>
-<br/>
-<br/>
-<br/>
-<br/>
+get_header(); 
 
+set_query_var( 'custom_fields',  $custom_fields );
+get_template_part( 'template-parts/galery', 'subheader' );
+?>
 
 
 <?php 
+
 
 $gallery = get_post_gallery( get_the_ID(), false );
 $args = array( 
@@ -23,167 +23,85 @@ $args = array(
 ); 
 $attachments = get_posts( $args );
 
-$outer_html = '';
-$outer_html .= '<div class="content-galery row col-sm-11 col-centered"><h1> Galery page </h1></div>';
+$galery_images_size = [new imageSizes('galery-thumb-1', 2, 1)];
 
-$count = 1;
 
-if( wp_is_mobile() ) {
-    $outer_html .= '<div id="galery" class="row col-sm-11 col-centered">';
+class imageSizes{
+	var $name;
+	var $occupiesSpaceWidth;
+	var $occupiesSpaceHeight;
+	
+	function __construct($name, $occupiesSpaceWidth, $occupiesSpaceHeight){
+		$this->name = $name;
+		$this->occupiesSpaceWidth = $occupiesSpaceWidth;
+		$this->occupiesSpaceHeight = $occupiesSpaceHeight;
+	}
 
-    foreach ( $attachments as $attachment ) {
-    
-        $image_alt = get_post_meta( $attachment->ID, '_wp_attachment_image_alt', true);
-        if ( empty( $image_alt )) {
-            $image_alt = $attachment->post_title;
-        }
-        if ( empty( $image_alt )) {
-            $image_alt = $attachment->post_excerpt;
-        }
-        $image_title = $attachment->post_title;
-        
-        if ($count == 1 || $count == 3 || $count == 4 || $count == 7){
-            $outer_html .= '<div class="row">';
-        }
+	function SetName($name){
+		$this->name = $name;
+	}
 
-        switch ($count) {
-            case 1:
-            case 2:
-                $image_url = wp_get_attachment_image_src( $attachment->ID, 'medium' );
-                $image_thumb = wp_get_attachment_image_src( $attachment->ID, 'thumbnail' );
-                $image_full = wp_get_attachment_image_src( $attachment->ID, 'large' );
-                $outer_html .= '<div class="col-xs-6" data-size = ' .$image_url[2]. '>';
-                break;
-            case 3:
-                $image_url = wp_get_attachment_image_src( $attachment->ID, 'large' );
-                $image_thumb = wp_get_attachment_image_src( $attachment->ID, 'thumbnail' );
-                $image_full = wp_get_attachment_image_src( $attachment->ID, 'large' );
-                $outer_html .= '<div class="col-xs-12" data-size = ' .$image_url[2].'>';
-                break;
-            case 4:
-            case 5:
-            case 6:
-                $image_url = wp_get_attachment_image_src( $attachment->ID, 'medium' );
-                $image_thumb = wp_get_attachment_image_src( $attachment->ID, 'thumbnail' );
-                $image_full = wp_get_attachment_image_src( $attachment->ID, 'large' );
-                $outer_html .= '<div class="col-xs-4" data-size = ' .$image_url[2].'>';
-                break;
-            case 7:
-            case 8:
-            case 9:
-            case 10:
-                $image_url = wp_get_attachment_image_src( $attachment->ID, 'medium' );
-                $image_thumb = wp_get_attachment_image_src( $attachment->ID, 'thumbnail' );
-                $image_full = wp_get_attachment_image_src( $attachment->ID, 'large' );
-                $outer_html .= '<div class="col-xs-3" data-size = ' .$image_url[2].'>';
-                break;
-            default:
-                $image_url = wp_get_attachment_image_src( $attachment->ID, 'large' );
-                $image_thumb = wp_get_attachment_image_src( $attachment->ID, 'thumbnail' );
-                $image_full = wp_get_attachment_image_src( $attachment->ID, 'large' );
-                $outer_html .= '<div class="col-xs-12" data-size = ' .$image_url[2].'>';
+	function GetName(){
+		return $this->name;
+	}
 
-        }
-
-        $outer_html .= '<div class="item-picture" data-type="image">';
-        $outer_html .= '<a href="#" class="galery-pop" data-image="'. $image_full[0] . '" data-thumb="'. $image_thumb[0] . '"><img src="' . $image_url[0] . '" alt="'. $image_alt .'"></a>' ;
-        $outer_html .= '<div class="image-overlay">';
-        $outer_html .= '</div>';
-//        $outer_html .= '<span class="item-label">' . $image_title . '</span>';
-        $outer_html .= '</div>';
-        $outer_html .= '</div>';
-        
-        if ($count == 2 || $count == 3 || $count == 6 || $count == 10){
-            $outer_html .= '</div>';
-        }
-        
-        $count++;
-
-        if ($count == 11) {
-            $count = 1;
-        }
-    }
-    
-}else{
-    $outer_html .= '<div id="galery" class="row col-sm-11 col-centered">';
-
-    foreach ( $attachments as $attachment ) {
-    
-        $image_alt = get_post_meta( $attachment->ID, '_wp_attachment_image_alt', true);
-        if ( empty( $image_alt )) {
-            $image_alt = $attachment->post_title;
-        }
-        if ( empty( $image_alt )) {
-            $image_alt = $attachment->post_excerpt;
-        }
-        $image_title = $attachment->post_title;
-        
-        if ($count == 1 || $count == 3 || $count == 4 || $count == 7){
-            $outer_html .= '<div class="row">';
-        }
-
-        switch ($count) {
-            case 1:
-            case 2:
-                $image_url = wp_get_attachment_image_src( $attachment->ID, 'large' );
-                $image_thumb = wp_get_attachment_image_src( $attachment->ID, 'thumbnail' );
-                $image_full = wp_get_attachment_image_src( $attachment->ID, 'full' );
-                $outer_html .= '<div class="col-xs-6" data-size = ' .$image_url[2]. '>';
-                break;
-            case 3:
-                $image_url = wp_get_attachment_image_src( $attachment->ID, 'full' );
-                $image_thumb = wp_get_attachment_image_src( $attachment->ID, 'thumbnail' );
-                $image_full = wp_get_attachment_image_src( $attachment->ID, 'full' );
-                $outer_html .= '<div class="col-xs-12" data-size = ' .$image_url[2].'>';
-                break;
-            case 4:
-            case 5:
-            case 6:
-                $image_url = wp_get_attachment_image_src( $attachment->ID, 'large' );
-                $image_thumb = wp_get_attachment_image_src( $attachment->ID, 'thumbnail' );
-                $image_full = wp_get_attachment_image_src( $attachment->ID, 'full' );
-                $outer_html .= '<div class="col-xs-4" data-size = ' .$image_url[2].'>';
-                break;
-            case 7:
-            case 8:
-            case 9:
-            case 10:
-                $image_url = wp_get_attachment_image_src( $attachment->ID, 'medium' );
-                $image_thumb = wp_get_attachment_image_src( $attachment->ID, 'thumbnail' );
-                $image_full = wp_get_attachment_image_src( $attachment->ID, 'full' );
-                $outer_html .= '<div class="col-xs-3" data-size = ' .$image_url[2].'>';
-                break;
-            default:
-                $image_url = wp_get_attachment_image_src( $attachment->ID, 'full' );
-                $image_thumb = wp_get_attachment_image_src( $attachment->ID, 'thumbnail' );
-                $image_full = wp_get_attachment_image_src( $attachment->ID, 'full' );
-                $outer_html .= '<div class="col-xs-12" data-size = ' .$image_url[2].'>';
-
-        }
-
-        $outer_html .= '<div class="item-picture" data-type="image">';
-        $outer_html .= '<a href="#" class="galery-pop" data-image="'. $image_full[0] . '" data-thumb="'. $image_thumb[0] . '"><img src="' . $image_url[0] . '" alt="'. $image_alt .'"></a>' ;
-        $outer_html .= '<div class="image-overlay">';
-        $outer_html .= '</div>';
-//        $outer_html .= '<span class="item-label">' . $image_title . '</span>';
-        $outer_html .= '</div>';
-        $outer_html .= '</div>';
-        
-        if ($count == 2 || $count == 3 || $count == 6 || $count == 10){
-            $outer_html .= '</div>';
-        }
-        
-        $count++;
-
-        if ($count == 11) {
-            $count = 1;
-        }
-    }
+	function SetOccupiesSpace($occupiesSpaceWidth, $occupiesSpaceHeight){
+		$this->occupiesSpaceWidth = $occupiesSpaceWidth;
+		$this->occupiesSpaceHeight = $occupiesSpaceHeight;
+	}
 }
 
-$outer_html .= '</div>';
-
-echo $outer_html;
 ?>
+
+<div class="content-galery row col-sm-11 col-centered"></div>
+
+<?php 
+if( wp_is_mobile() ) {
+    
+}else{ ?>
+    <div id="galery" class="row col-sm-11 col-centered">
+	<?php
+
+	$number_image;
+	$count = 0;
+    foreach ( $attachments as $attachment ) {
+    
+        $image_alt = get_post_meta( $attachment->ID, '_wp_attachment_image_alt', true);
+        if ( empty( $image_alt )) {
+            $image_alt = $attachment->post_title;
+        }
+        if ( empty( $image_alt )) {
+            $image_alt = $attachment->post_excerpt;
+        }
+        $image_title = $attachment->post_title;
+        
+		$image_url = wp_get_attachment_image_src( $attachment->ID, 'large' );
+        $image_thumb = wp_get_attachment_image_src( $attachment->ID, 'thumbnail' );
+        $image_full = wp_get_attachment_image_src( $attachment->ID, 'full' );
+
+		//$number_image = calcPosition();
+
+		$image_galery = wp_get_attachment_image_src( $attachment->ID, $galery_images_size[0]->name);
+		$count++;
+		?>
+
+
+
+		<div class="elements col-xs-4" data-size = "<?php echo $image_galery[1] ?>">
+			<div class="item-picture" data-type="image">
+				<a href="#" class="galery-pop" data-image="<?php echo $image_full[0] ?>" data-thumb="<?php echo $image_thumb[0] ?>">
+					<div class='image-container'><img src="<?php echo $image_galery[0] ?>" alt="<?php echo $image_alt ?>" /></div>
+					<!--<div style="height:870px; background-image: url('<?php echo $image_url[0] ?>');background-position: center; background-size: cover;"></div>-->
+				</a>
+				<div class='cbp-plus'></div>
+	<!--        <span class="item-label"><?php echo $image_title ?> </span> -->
+			</div>
+		</div>
+        
+
+    <?php } ?>
+    
+    </div>
+<?php } ?>
 
 <?php get_footer(); ?>

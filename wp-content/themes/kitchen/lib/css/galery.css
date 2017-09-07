@@ -6,7 +6,15 @@
 /*Galery page*/
 
 #galery img {
-    width: 100%;
+    right: 0;
+    left: 0;
+    max-width: 100%;
+    margin: auto;
+    margin-left: auto;
+    width: auto;
+    max-height: 100%;
+    margin-right: auto;
+    position: absolute;
 }
 
 #galery > div {
@@ -14,15 +22,20 @@
     overflow: hidden;
     border: 2px transparent solid;
     padding: 0px;
+    height: 250px;
 }
 
 #galery > div > div {
     overflow: hidden;
+    height: 100%;
+}
+
+#galery .image-container{
+    height: 100%;
 }
 
 /*modal*/
-
-#galery-modal{
+#galery-modal {
     padding-left: 17px;
 }
 
