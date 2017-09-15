@@ -1,5 +1,5 @@
 jQuery(function($){
-
+    alert('Start');
     $(document).ready(function () {
 
             $.fn.slider = function( customOptions ){
@@ -16,10 +16,14 @@ jQuery(function($){
 
             $(window).load(function () {
 
-                $('#galery img').each(function () {
+                if (isMobile()) return;
 
-                    createCanvas(this);
-                });
+                    $('#galery img').each(function () {
+                        console.log('runnn');
+                        createCanvas(this);
+                    });
+
+            
 
                 function createCanvas(image) {
 
@@ -77,6 +81,11 @@ jQuery(function($){
                 }
             });
     });
+
+    function isMobile(){
+            $.browser.device = (/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase()));
+            return $.browser.device;
+    }
     
     /* 
     
@@ -100,7 +109,7 @@ jQuery(function($){
         bindUIEvents(){
             
             let _this = this;
-            this.itemPictures.on("click", function() {
+            this.itemPictures.on("click", function () {
                 _this.showModal($(this));
             });
             
@@ -174,7 +183,6 @@ jQuery(function($){
             
             this.currentSlide = this.itemPictures.index(item);
             this.renderSliderImages();
-                            
             this.modal.modal('show');
         }
         
@@ -241,7 +249,7 @@ jQuery(function($){
         
         controllMobile(){
             
-            if (navigator.msMaxTouchPoints){
+            if (navigator.msMaxTouchPoints && false){
                 this.slider.on('scroll', function() {
                     console.log('Scroll');
                 });
@@ -472,7 +480,6 @@ jQuery(function($){
         }
 
         setPositionElements() {
-            console.log('ADDDDDDDDDDDDDDDDDDDD' + this.elements.galery.width());
             let _this = this;
             this.imagesProp.forEach(function(prop, index) {
                 

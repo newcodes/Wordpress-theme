@@ -56,9 +56,53 @@ class imageSizes{
 <div class="content-galery row col-sm-11 col-centered"></div>
 
 <?php 
-if( wp_is_mobile() ) {
+if( wp_is_mobile() ) { ?>
+
+	<div id="galery" class="row col-sm-11 col-centered">
+		<?php
+
+		$number_image;
+		$count = 0;
+		foreach ( $attachments as $attachment ) {
     
-}else{ ?>
+			$image_alt = get_post_meta( $attachment->ID, '_wp_attachment_image_alt', true);
+			if ( empty( $image_alt )) {
+				$image_alt = $attachment->post_title;
+			}
+			if ( empty( $image_alt )) {
+				$image_alt = $attachment->post_excerpt;
+			}
+			$image_title = $attachment->post_title;
+        
+			$image_url = wp_get_attachment_image_src( $attachment->ID, 'medium' );
+			$image_thumb = wp_get_attachment_image_src( $attachment->ID, 'thumbnail' );
+			$image_full = wp_get_attachment_image_src( $attachment->ID, 'large' );
+
+			//$number_image = calcPosition();
+
+			$image_galery = wp_get_attachment_image_src( $attachment->ID, $galery_images_size[0]->name);
+			$count++;
+			?>
+
+
+
+			<div class="elements col-xs-6" data-size = "<?php echo $image_galery[1] ?>">
+				<div class="item-picture" data-type="image">
+					<a href="#" class="galery-pop" data-image="<?php echo $image_full[0] ?>" data-thumb="<?php echo $image_thumb[0] ?>">
+						<div class='image-container'><img src="<?php echo $image_galery[0] ?>" alt="<?php echo $image_alt ?>" /></div>
+						<!--<div style="height:870px; background-image: url('<?php echo $image_url[0] ?>');background-position: center; background-size: cover;"></div>-->
+					</a>
+					<div class='cbp-plus'></div>
+		<!--        <span class="item-label"><?php echo $image_title ?> </span> -->
+				</div>
+			</div>
+        
+
+		<?php } ?>
+    
+    </div>
+
+<?php }else{ ?>
     <div id="galery" class="row col-sm-11 col-centered">
 	<?php
 
