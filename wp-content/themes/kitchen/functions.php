@@ -16,8 +16,8 @@ function armadio_enqueue_scripts() {
     wp_enqueue_script('jquery', get_template_directory_uri().'/lib/jquery-3.2.1.min.js', '', true );
     wp_enqueue_script('bootstrap', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', $dependencies, true );
     
-    wp_enqueue_script('contact-maps', get_template_directory_uri() . '/js/contact-maps.js');
-    
+    wp_enqueue_script('footer-maps', get_template_directory_uri() . '/js/contact-maps.js');
+
     if ( is_page_template('galery.php') ){
         wp_deregister_script( 'newGgalery' );
         wp_register_script('newGalery', get_template_directory_uri().'/lib/js/newGalery.js', $dependencies);
@@ -364,37 +364,47 @@ function save_data_custom_fields($post_id) {
         return $post_id;
     }
 
-    foreach ($custom_fields['fields'] as $field) {
-        $old = get_post_meta($post_id, $field['id'], true);
-        $new = $_POST[$field['id']];
+	if (get_current_screen()->post_type == 'post'){
 
-		if( get_current_screen()->post_type == 'post' && $field['type'] == 'image' ){
-			$countStr = $field['id'].'_count';
+		foreach ($custom_fields['fields'] as $field) {
+			$old = get_post_meta($post_id, $field['id'], true);
+			$new = $_POST[$field['id']];
+
+			if( get_current_screen()->post_type == 'post' && $field['type'] == 'image' ){
+				$countStr = $field['id'].'_count';
 
 
-			$oldCount = get_post_meta($post_id, $countStr, true);
-			$newCount = $_POST[$countStr];
-			if ($newCount && $newCount != $oldCount) {
-				update_post_meta($post_id, $countStr, $newCount);
-			} elseif ('' == $newCount && $oldCount) {
-				delete_post_meta($post_id, $countStr, $oldCount);
-			}
-
-			$count = $_POST[$countStr];
-
-			for ($i = 1; $i <= $count; $i++) {
-				$imageId = $field['id'].'_'.$i;
-				$oldImage = get_post_meta($post_id, $imageId, true);
-				$newImage = $_POST[$imageId];
-				if ($newImage && $newImage != $oldImage){
-					update_post_meta($post_id, $imageId, $newImage);
-					// add_term_meta( $term_id, $field['id'], $image, true );
-				}elseif('' == $newImage && $oldImage){
-					delete_post_meta($post_id, $imageId, $oldImage);
+				$oldCount = get_post_meta($post_id, $countStr, true);
+				$newCount = $_POST[$countStr];
+				if ($newCount && $newCount != $oldCount) {
+					update_post_meta($post_id, $countStr, $newCount);
+				} elseif ('' == $newCount && $oldCount) {
+					delete_post_meta($post_id, $countStr, $oldCount);
 				}
-			}
+
+				$count = $_POST[$countStr];
+
+				for ($i = 1; $i <= $count; $i++) {
+					$imageId = $field['id'].'_'.$i;
+					$oldImage = get_post_meta($post_id, $imageId, true);
+
+					if (isset($_POST[$imageId])){
+						$newImage = $_POST[$imageId];
+						if ($newImage && $newImage != $oldImage){
+							update_post_meta($post_id, $imageId, $newImage);
+							// add_term_meta( $term_id, $field['id'], $image, true );
+						}elseif('' == $newImage && $oldImage){
+							delete_post_meta($post_id, $imageId, $oldImage);
+						}
+					}else{
+						delete_post_meta($post_id, $imageId, $oldImage);
+					}
+					
+				}
 
 		 
+		   }
+
 	   }
 
         if ($new && $new != $old) {

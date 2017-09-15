@@ -733,6 +733,37 @@ header .social li a:hover {
     font-style:normal;
 }
 
+<<<<<<< HEAD
+.gmnoprint > div {
+    background-color: #dfe3e5!important;
+}
+.address-info1 {
+    margin-bottom: 9px;
+    font-style: normal;
+    margin-top: -23px;
+    background-color: rgba(44, 62, 80, 0.68);
+    padding-top: 12px;
+    color: white;
+    width: 100%;
+    margin-left: 0px;
+}
+.address-info {
+    font-style: normal;
+    margin-top: -23px;
+    background-color: rgba(44, 62, 80, 0.68);
+    padding-top: 12px;
+    color: white;
+    width: 100%;
+    margin-left: 0px;
+}
+.office {
+    margin-bottom: 23px;
+}
+.show-room {
+    margin-bottom: 9px;
+}
+
+=======
 .subheader {
     background-image: url(./images/subheader/2.jpg);
     background-repeat: no-repeat;
@@ -820,33 +851,4 @@ header .social li a:hover {
 .kitchen-content h2 {
     text-align: center;
 }
-
-.gmnoprint > div {
-    background-color: #dfe3e5!important;
-}
-.address-info1 {
-    margin-bottom: 9px;
-    font-style: normal;
-    margin-top: -23px;
-    background-color: rgba(44, 62, 80, 0.68);
-    padding-top: 12px;
-    color: white;
-    width: 100%;
-    margin-left: 0px;
-}
-.address-info {
-    font-style: normal;
-    margin-top: -23px;
-    background-color: rgba(44, 62, 80, 0.68);
-    padding-top: 12px;
-    color: white;
-    width: 100%;
-    margin-left: 0px;
-}
-.office {
-    margin-bottom: 23px;
-}
-.show-room {
-    margin-bottom: 9px;
-}
-
+>>>>>>> master

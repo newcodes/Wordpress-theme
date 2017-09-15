@@ -1,4 +1,5 @@
 .idea
+<<<<<<< HEAD
 *.log
 wp-config.php
 wp-content/advanced-cache.php
@@ -21,3 +22,12 @@ wp-content/plugins/woocommerce-multilingual/
 /readme.html
 /sitemap.xml
 /sitemap.xml.gz
+=======
+wp-content/plugins/contact-form-7-style/
+wp-content/plugins/contact-form-7/
+wp-config.php
+wp-content/themes/kitchen/contact - Copy.php
+wp-content/themes/kitchen/contact_OS.php
+wp-content/themes/kitchen/contact_last.php
+wp-content/uploads/
+>>>>>>> fe406f3cdf16d9331a5ee21ab011053838b66541
