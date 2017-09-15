@@ -348,7 +348,9 @@ add_action('save_post', 'save_data_custom_fields');
 function save_data_custom_fields($post_id) {
     global $custom_fields;
 
-    if (!wp_verify_nonce($_POST['custom_fields_nonce'], basename(__FILE__))) {
+	if (!isset($_POST['custom_fields_nonce'])) return;
+
+    if ( !wp_verify_nonce($_POST['custom_fields_nonce'], basename(__FILE__))) {
         return $post_id;
     }
 	
@@ -360,59 +362,63 @@ function save_data_custom_fields($post_id) {
         if (!current_user_can('edit_page', $post_id)) {
             return $post_id;
         }
-    } elseif (!current_user_can('edit_post', $post_id)) {
+    }elseif (!current_user_can('edit_post', $post_id)) {
         return $post_id;
     }
 
-	if (get_current_screen()->post_type == 'post'){
+	
 
 		foreach ($custom_fields['fields'] as $field) {
 			$old = get_post_meta($post_id, $field['id'], true);
 			$new = $_POST[$field['id']];
 
-			if( get_current_screen()->post_type == 'post' && $field['type'] == 'image' ){
-				$countStr = $field['id'].'_count';
+		
+
+			if (get_current_screen()->post_type == 'post'){
+				if( get_current_screen()->post_type == 'post' && $field['type'] == 'image' ){
+					$countStr = $field['id'].'_count';
 
 
-				$oldCount = get_post_meta($post_id, $countStr, true);
-				$newCount = $_POST[$countStr];
-				if ($newCount && $newCount != $oldCount) {
-					update_post_meta($post_id, $countStr, $newCount);
-				} elseif ('' == $newCount && $oldCount) {
-					delete_post_meta($post_id, $countStr, $oldCount);
-				}
+					$oldCount = get_post_meta($post_id, $countStr, true);
+					$newCount = $_POST[$countStr];
+					if ($newCount && $newCount != $oldCount) {
+						update_post_meta($post_id, $countStr, $newCount);
+					} elseif ('' == $newCount && $oldCount) {
+						delete_post_meta($post_id, $countStr, $oldCount);
+					}
 
-				$count = $_POST[$countStr];
+					$count = $_POST[$countStr];
 
-				for ($i = 1; $i <= $count; $i++) {
-					$imageId = $field['id'].'_'.$i;
-					$oldImage = get_post_meta($post_id, $imageId, true);
+					for ($i = 1; $i <= $count; $i++) {
+						$imageId = $field['id'].'_'.$i;
+						$oldImage = get_post_meta($post_id, $imageId, true);
 
-					if (isset($_POST[$imageId])){
-						$newImage = $_POST[$imageId];
-						if ($newImage && $newImage != $oldImage){
-							update_post_meta($post_id, $imageId, $newImage);
-							// add_term_meta( $term_id, $field['id'], $image, true );
-						}elseif('' == $newImage && $oldImage){
+						if (isset($_POST[$imageId])){
+							$newImage = $_POST[$imageId];
+							if ($newImage && $newImage != $oldImage){
+								update_post_meta($post_id, $imageId, $newImage);
+								// add_term_meta( $term_id, $field['id'], $image, true );
+							}elseif('' == $newImage && $oldImage){
+								delete_post_meta($post_id, $imageId, $oldImage);
+							}
+						}else{
 							delete_post_meta($post_id, $imageId, $oldImage);
 						}
-					}else{
-						delete_post_meta($post_id, $imageId, $oldImage);
-					}
 					
+					}
+
+				}else {
+						
+					if ($new && $new != $old) {
+						update_post_meta($post_id, $field['id'], $new);
+					} elseif ('' == $new && $old) {
+						delete_post_meta($post_id, $field['id'], $old);
+					}
 				}
+			}
 
-		 
-		   }
+		}
 
-	   }
-
-        if ($new && $new != $old) {
-            update_post_meta($post_id, $field['id'], $new);
-        } elseif ('' == $new && $old) {
-            delete_post_meta($post_id, $field['id'], $old);
-        }
-    }
 }
 
 /*
