@@ -4,32 +4,34 @@ get_header();
 
 set_query_var( 'custom_fields',  $custom_fields );
 get_template_part( 'template-parts/galery', 'subheader' );
-?>
-
-<h2>Page template</h2>
-
-<?php 
 
 $countImages = get_post_meta(get_the_ID(), 'armadio_images_kitchen_count' , true);
 
-
-
-for ($i = 1; $i <= $countImages; $i++){
-	$meta_field_image = get_post_meta(get_the_ID(), 'armadio_images_kitchen_'.$i , true);
-	?>
-	<div class="col-xs-4"> 
-	<?php 
-
-	echo wp_get_attachment_image ( $meta_field_image, 'category-thumb' );
-
-	?>
-	</div> 
-	<?php 
-}
-
-
 ?>
 
+
+<div class="wrapper">
+	<div class="viewport">
+			<?php
+			for ($i = 1; $i <= $countImages; $i++){
+				$meta_field_image = get_post_meta(get_the_ID(), 'armadio_images_kitchen_'.$i , true);
+				if ($meta_field_image){
+					?>
+			
+						<?php 
+
+						echo wp_get_attachment_image ( $meta_field_image, 'category-thumb', false, array("class" => "product-image") );
+
+						?>
+			
+					<?php 
+				}
+			}
+			?>
+	</div>
+	 <div class="galery-btn btn-left" data-next-slide="-1"></div>
+     <div class="galery-btn btn-right" data-next-slide="+1"></div>
+</div>
 
 
 

@@ -850,3 +850,68 @@ header .social li a:hover {
     margin-bottom: 9px;
 }
 
+/** Single page*/
+
+@font-face {
+    font-family: revicon;
+    src: url(lib/css/font/revicons.ttf);
+}
+
+.viewport {
+    -webkit-transition: -webkit-transform 1s;
+    -moz-transition: -moz-transform 1s;
+    -o-transition: -o-transform 1s;
+    transition: transform 1s;
+}
+
+.product-image {
+    width: 100%;
+    height: auto;
+    display: none;
+}
+
+.galery-btn {
+    position: absolute;
+    cursor: pointer;
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    background: rgba(0,0,0,0.35);
+}
+
+.galery-btn:hover {
+        background: #000;
+    }
+
+.btn-left {
+    top: 50%;
+    left: 0;
+    transform: matrix(1, 0, 0, 1, 20, -20);
+}
+
+.btn-left:before {
+        content: "\e824";
+        margin-left: -3px;
+        font-family: revicon;
+        font-size: 15px;
+        color: #fff;
+        display: block;
+        line-height: 40px;
+        text-align: center;
+    }
+.btn-right {
+    top: 50%;
+    left: 100%;
+    transform: matrix(1, 0, 0, 1, -60, -20);
+}
+
+.btn-right:before {
+        content: "\e825";
+        margin-left: -3px;
+        font-family: revicon;
+        font-size: 15px;
+        color: #fff;
+        display: block;
+        line-height: 40px;
+        text-align: center;
+}

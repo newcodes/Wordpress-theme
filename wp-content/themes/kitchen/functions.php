@@ -23,6 +23,12 @@ function armadio_enqueue_scripts() {
         wp_register_script('newGalery', get_template_directory_uri().'/lib/js/newGalery.js', $dependencies);
         wp_enqueue_script('newGalery');
     }
+
+	if ( is_single() ){
+        wp_deregister_script( 'productSlider' );
+        wp_register_script('productSlider', get_template_directory_uri().'/lib/js/productSlider.js', $dependencies);
+        wp_enqueue_script('productSlider');
+    }
     
     wp_deregister_script( 'common' );
     wp_register_script('common', get_template_directory_uri().'/lib/js/common.js', $dependencies);
