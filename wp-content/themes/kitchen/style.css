@@ -867,6 +867,9 @@ header .social li a:hover {
 .product-image {
     width: 100%;
     height: auto;
+}
+
+.product-list-image {
     display: none;
 }
 
@@ -914,4 +917,11 @@ header .social li a:hover {
         display: block;
         line-height: 40px;
         text-align: center;
+}
+
+.rootImage {
+    -webkit-transition: -webkit-transform 1s;
+    -moz-transition: -moz-transform 1s;
+    -o-transition: -o-transform 1s;
+    transition: transform 1s;
 }
