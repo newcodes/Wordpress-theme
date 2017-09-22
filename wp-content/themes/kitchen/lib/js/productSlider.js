@@ -11,8 +11,10 @@ jQuery(function ($) {
         init() {
 
             this.initElements();
+
+            if (this.elements.listImages.length == 0) return;
+
             this.loadImages();
-            //this.createView();
 
             $(window).resize( () => {
                 this.onResize();
@@ -55,6 +57,7 @@ jQuery(function ($) {
         }
 
         loadImages() {
+
 
             $("#product-page").css({ "opacity": "0" });
             this.elements.wrapper.css({"height": "100vh"});
@@ -164,8 +167,10 @@ jQuery(function ($) {
         }
 
         bindBtns() {
+            this.elements.wrapper.append("<div class='galery-btn btn-left' data-next-slide='-1'></div><div class='galery-btn btn-right' data-next-slide='+1'></div>");
+
             let _this = this;
-            this.elements.btnNext.click(function() {
+            $('.wrapper .galery-btn').click(function () {
                 let nextPhoto = parseInt($(this).data("next-slide"));
                 _this.showNextPhoto(nextPhoto);
             });

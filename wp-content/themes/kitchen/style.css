@@ -857,6 +857,10 @@ header .social li a:hover {
     src: url(lib/css/font/revicons.ttf);
 }
 
+#product-page h2, #product-page .description, #product-page .video {
+    text-align: center;
+}
+
 .viewport {
     -webkit-transition: -webkit-transform 1s;
     -moz-transition: -moz-transform 1s;

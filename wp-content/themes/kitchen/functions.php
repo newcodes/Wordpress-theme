@@ -125,9 +125,23 @@ $custom_fields = array(
     'priority' => 'high',
     'fields' => array(
         array(
-            'name' => 'H1',
+            'name' => 'Заголовок',
             'desc' => 'Введіть заголовок сторінки.',
             'id' => $prefix . 'h1',
+            'type' => 'text',
+            'std' => ''
+        ),
+		array(
+            'name' => 'Підзаголовок',
+            'desc' => 'Введіть підзаголовок сторінки.',
+            'id' => $prefix . 'h2',
+            'type' => 'text',
+            'std' => ''
+        ),
+		array(
+            'name' => 'Відео',
+            'desc' => 'Введіть youtube id',
+            'id' => $prefix . 'video',
             'type' => 'text',
             'std' => ''
         ),
@@ -150,7 +164,7 @@ function theme_add_custom_fields() {
 }
 
 function show_custom_fields() {
-    global $custom_fields, $post;
+    global $custom_fields, $post, $prefix;
 
     echo '<input type="hidden" name="custom_fields_nonce" value="', wp_create_nonce(basename(__FILE__)), '" />';
     echo '<table class="form-table">';
@@ -159,13 +173,22 @@ function show_custom_fields() {
         // get current post meta data
         $meta = get_post_meta($post->ID, $field['id'], true);
 
-        echo '<tr>',
-                '<th style="width:20%"><label for="', $field['id'], '">', $field['name'], '</label></th>',
-                '<td>';
+		
+        echo '<tr>';
+		if (get_current_screen()->post_type == 'post'){
+                echo '<th style="width:20%"><label for="', $field['id'], '">', $field['name'], '</label></th>';
+		}
+        
+		echo '<td>';
+
         switch ($field['type']) {
             case 'text':
-                echo '<input type="text" name="', $field['id'], '" id="', $field['id'], '" value="', $meta ? $meta : $field['std'], '" size="30" style="width:97%" />', '<br />', $field['desc'];
-                break;
+				if (get_current_screen()->post_type == 'post'){
+					echo '<input type="text" name="', $field['id'], '" id="', $field['id'], '" value="', $meta ? $meta : $field['std'], '" size="30" style="width:97%" />', '<br />', $field['desc'];
+                }else if($field['id'] != $prefix.'h2' && $field['id'] != $prefix.'video'){
+					echo '<input type="text" name="', $field['id'], '" id="', $field['id'], '" value="', $meta ? $meta : $field['std'], '" size="30" style="width:97%" />', '<br />', $field['desc'];
+				}
+				break;
             case 'textarea':
                 echo '<textarea name="', $field['id'], '" id="', $field['id'], '" cols="60" rows="4" style="width:97%">', $meta ? $meta : $field['std'], '</textarea>', '<br />', $field['desc'];
                 break;
@@ -375,10 +398,6 @@ function save_data_custom_fields($post_id) {
 	
 
 		foreach ($custom_fields['fields'] as $field) {
-
-				
-
-		
 
 				if (get_current_screen()->post_type == 'post'){
 					$old = get_post_meta($post_id, $field['id'], true);
