@@ -19,9 +19,18 @@ function armadio_enqueue_scripts() {
     wp_enqueue_script('footer-maps', get_template_directory_uri() . '/js/contact-maps.js');
 
     if ( is_page_template('galery.php') ){
-        wp_deregister_script( 'newGgalery' );
-        wp_register_script('newGalery', get_template_directory_uri().'/lib/js/newGalery.js', $dependencies);
-        wp_enqueue_script('newGalery');
+
+		global $is_IE;
+		if( $is_IE ) {
+			wp_deregister_script( 'newGalery-ie' );
+			wp_register_script('newGalery-ie', get_template_directory_uri().'/lib/js/newGalery-ie.js', $dependencies);
+			wp_enqueue_script('newGalery-ie');
+		}else {
+			wp_deregister_script( 'newGalery-modern-browsers' );
+			wp_register_script('newGalery-modern-browsers', get_template_directory_uri().'/lib/js/newGalery-modern-browsers.js', $dependencies);
+			wp_enqueue_script('newGalery-modern-browsers');
+		}
+        
     }
 
 	if ( is_single() ){

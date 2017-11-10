@@ -6,8 +6,13 @@
 <?php endif; ?>
 
 
-<h1><?php _e('Домашня сторінка', 'armadio') ?></h1>
-
+<h1 itemprop="name"><?php _e('Домашня сторінка', 'armadio') ?></h1>
+<div itemprop="description" class="description">
+	Some description for site Some description for site Some description for site Some description for site
+	 Some description for site Some description for site Some description for site Some description for site
+	  Some description for site Some description for site Some description for site Some description for site 
+	   Some description for site Some description for site Some description for site Some description for site
+</div>
 
 
 
@@ -63,7 +68,7 @@
 <div class="footer-information col-sm-11">
     <div class="block-information map col-xs-6 col-sm-4 col-md-3 col-lg-3">
         <div id="map"></div>
-        <script async defer
+        <script itemprop="hasMap" async defer
                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCp4kIA1rpEhdniApOP9DiPwH0Dd4r75PI&callback=initMap1">
         </script>
     </div>
@@ -73,17 +78,23 @@
             <ul>
                 <li class="address">
                     <i class="glyphicon glyphicon-map-marker"></i>
-                    <p>60 MEDINAT HAYEHUDIM STREET, HERTZLIA PITUACH</p>
+                    <p>
+					<address itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+						<span itemprop="streetAddress">Boulevard Vaclav Havel, 16</span>,
+						<span itemprop="addressRegion">Kiev</span>,
+						<span itemprop="addressCountry">Ukraine</span>
+					</address>
+					</p>
                 </li>
                 <li class="phone-footer">
                     <i class="glyphicon glyphicon-earphone"></i>
-                    <p>+38 (044) 206 36 39 </p></li>
+                    <p itemprop="telephone">+38 (044) 206 36 39 </p></li>
                 <li class="mail">
                     <i class="glyphicon glyphicon-envelope"></i>
-                    <p>home@mdvd.com.ua</p></li>
+                    <p itemprop="email">home@mdvd.com.ua</p></li>
                 <li class="www">
                     <i class="glyphicon glyphicon-globe"></i>
-                    <p>armadio.com.ua</p></li>
+                    <p itemprop="url">armadio.com.ua</p></li>
             </ul>
         </div>
     </div>
@@ -108,7 +119,7 @@
                 <h4>Why choose armadio?</h4>
                 <span class="arrow-info"></span>
             </div>
-            <div class="info-box-desc">
+            <div itemprop="description" class="info-box-desc">
                 <ul>
                     <li>We are one of oldest companies in the field</li>
                     <li>Over 40 countries worldwide.</li>

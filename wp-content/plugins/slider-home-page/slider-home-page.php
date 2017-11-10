@@ -80,7 +80,16 @@ class Armadio_Slider_Widget extends WP_Widget {
         
         <?php
         
-        wp_enqueue_script( 'Слайдер', plugin_dir_url( __FILE__ ) . 'js/slider.js', array( 'jquery' ), $this->version, true );
+		global $is_IE;
+		if( $is_IE ) {
+			wp_register_style('style-ie',  plugin_dir_url( __FILE__ ) . '/css/style-ie.css');
+			wp_enqueue_style( 'style-ie');
+			wp_enqueue_script( 'slider-ie', plugin_dir_url( __FILE__ ) . 'js/slider-ie.js', array( 'jquery' ), $this->version, true );
+
+		}else {
+			wp_enqueue_script( 'slider', plugin_dir_url( __FILE__ ) . 'js/slider-modern-browsers.js', array( 'jquery' ), $this->version, true );
+		}
+
         
         echo $after_widget;
          

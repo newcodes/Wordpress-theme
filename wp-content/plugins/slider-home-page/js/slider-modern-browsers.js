@@ -1,4 +1,5 @@
 jQuery(function ($) {
+
     class Slider {
 
         constructor() {

@@ -243,12 +243,15 @@ header .social li a:hover {
     }
     
 /*   dropdown menu*/
+
+    #menu-main-menu{
+        margin: 0;
+    } 
     
-    #menu-main-menu > li:hover > ul.sub-menu{
-        position: relative!important;
-        
-        overflow: hidden!important;
-         -webkit-transition: max-height 3s ease-out;
+    #menu-main-menu > li:hover > ul.sub-menu {
+        position: relative !important;
+        overflow: hidden !important;
+        -webkit-transition: max-height 3s ease-out;
         -ms-transition: max-height 3s ease-out;
         -o-transition: max-height 3s ease-out;
         transition: max-height 3s ease-out;

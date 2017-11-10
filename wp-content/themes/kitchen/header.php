@@ -13,7 +13,7 @@
     <?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); ?>>
+<body itemscope itemtype="http://schema.org/FurnitureStore" <?php body_class(); ?>>
 <header>
     <div class="row">
         <div class="top-bar col-xs-11 col-centered row">
@@ -44,7 +44,7 @@
                                     }else {
 										$custom_logo_id = get_theme_mod('custom_logo');
 										$image = wp_get_attachment_image_src( $custom_logo_id , 'full' );
-										echo '<img src="'.$image[0].'" alt="Designer kitchens to order from Armadio" title="Designer kitchens to order from Armadio" />';
+										echo '<img itemprop="logo" src="'.$image[0].'" alt="Designer kitchens to order from Armadio" title="Designer kitchens to order from Armadio" />';
 									}
                                 ?>
                             </div>

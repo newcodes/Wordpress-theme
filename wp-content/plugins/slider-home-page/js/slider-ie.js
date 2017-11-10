@@ -50,6 +50,7 @@ jQuery(function ($) {
 
     readData();
     bindEvents();
+
 });
 
 
