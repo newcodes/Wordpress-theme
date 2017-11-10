@@ -163,16 +163,19 @@ header .social li a:hover {
   float: right;  
 }
 
-#navbar > div > ul > li > a {
-  color: #fff;
-  padding: 30px 20px 30px;
-  white-space: nowrap;
-  text-transform: uppercase;
-}
-
-#navbar > div > ul > li > a:hover {
-  background: #2ecc71;
-}
+    #navbar > div > ul > li > a, .current-menu-item {
+        color: #fff;
+        padding: 30px 20px 30px;
+        white-space: nowrap;
+        text-transform: uppercase;
+    }
+        .current-menu-item:hover {
+            background: #2ecc71;
+            cursor: pointer;
+        } 
+        #navbar > div > ul > li > a:hover {
+            background: #2ecc71;
+        }
 
 @media screen and (max-width: 767px){
     
@@ -225,10 +228,10 @@ header .social li a:hover {
         float: none;
         text-align: center;
     }
-    
-    #navbar > div > ul > li > a {
-        padding: 15px 20px;
-    }
+
+        #navbar > div > ul > li > a, .current-menu-item {
+            padding: 15px 20px;
+        }
     
 /*    subheader*/
     

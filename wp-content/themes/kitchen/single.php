@@ -13,11 +13,13 @@ $subtitle = get_post_meta(get_the_ID(), 'armadio_h2' , true);
 $videoId = get_post_meta(get_the_ID(), 'armadio_video' , true);
 ?>
 
-<!-- display product images-->
 
 <div id="product-page">
+
+	<!-- display product images-->
+
 	<div class="wrapper">
-		<div class="viewport">
+		<div class="viewport">			
 				<?php
 				for ($i = 1; $i <= $countImages; $i++){
 					$meta_field_image = get_post_meta(get_the_ID(), 'armadio_images_kitchen_'.$i , true);
@@ -36,7 +38,6 @@ $videoId = get_post_meta(get_the_ID(), 'armadio_video' , true);
 				?>
 		</div>
 	</div>
-
 
 <!-- display subtitle-->
 <?php if($subtitle){

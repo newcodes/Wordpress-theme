@@ -36,8 +36,6 @@ jQuery(function ($) {
         onResize() {
             this.deviceWidth = $(window).width();
 
-
-
             this.elements.slides.css({ "float": "left", "position": "relative", "width": this.deviceWidth / 2 });
 
             let viewportWidth = 0;
@@ -140,7 +138,7 @@ jQuery(function ($) {
 
             this.elements.viewport.css({ "width": viewportWidth + 'px', "height": "600px", "position": "absolute", "left": -3 * this.deviceWidth / 4 });
 
-            this.rootImage.css({ "transition": "transform 1s, opacity 1s", "transform": "scale(1.2)", "z-index": "10" });
+            this.rootImage.css({ "transition": "transform 1s, opacity 1s", "transform": "scale(1.1)", "z-index": "10" });
             this.previousImage.css({ "opacity": "0.4", "transition": "transform 1s, opacity 1s" });
             this.nextImage.css({ "opacity": "0.4", "transition": "transform 1s, opacity 1s" });
             this.lastImage.css({ "opacity": "0.4", "transition": "transform 1s, opacity 1s" });
@@ -193,14 +191,14 @@ jQuery(function ($) {
                 this.elements.viewport.animate({ "left": move + "px" }, 1000, () => {
                     this.setCurrentImage(1);
 
-                    this.rootImage.css({ "transition": "none", "transform": "scale(1.2)", "opacity": "1" });
+                    this.rootImage.css({ "transition": "none", "transform": "scale(1.1)", "opacity": "1" });
                     this.nextImage.css({ "transition": "none", "transform": "scale(1)", "opacity": "0.4", "z-index": "0" });
 
                     this.isShowingNextImage = false;
                 });
 
                 this.rootImage.css({ "transform": "scale(1)", "opacity": "0.4" });
-                this.nextImage.css({ "transform": "scale(1.2)", "opacity": "1", "z-index": "10" });
+                this.nextImage.css({ "transform": "scale(1.1)", "opacity": "1", "z-index": "10" });
             } else if (nextPhoto === -1) {
                 move = -this.deviceWidth / 4;
                 this.elements.viewport.animate({ "left": move + "px" }, 1000, () => {
@@ -213,7 +211,7 @@ jQuery(function ($) {
                 });
 
                 this.rootImage.css({ "transform": "scale(1)", "opacity": "0.4" });
-                this.previousImage.css({ "transform": "scale(1.2)", "opacity": "1", "z-index": "11" });
+                this.previousImage.css({ "transform": "scale(1.1)", "opacity": "1", "z-index": "11" });
 
             }
         }

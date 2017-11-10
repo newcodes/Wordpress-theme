@@ -13,9 +13,9 @@ jQuery(function($){
                 
                 if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
                     
-                    let choosedMenu = $(this).parent();
-                    let dropDownMenu = choosedMenu.find('>.sub-menu');
-                    let btn = choosedMenu.find('a > .mobile-dropdown-btn');
+                    var choosedMenu = $(this).parent();
+                    var dropDownMenu = choosedMenu.find('>.sub-menu');
+                    var btn = choosedMenu.find('a > .mobile-dropdown-btn');
 //                    choosedMenu.parent().find('>.mobile-menu').addClass('mobile-menu-is-close1');
 
                     if ( choosedMenu.hasClass('mobile-menu-is-open1') ) {
@@ -67,8 +67,8 @@ jQuery(function($){
             if (canvas.getContext) {
                 var ctx = canvas.getContext("2d");
 
-                let width = image.parentElement.clientWidth;
-                let height = image.parentElement.clientHeight;
+                var width = image.parentElement.clientWidth;
+                var height = image.parentElement.clientHeight;
 
                 canvas.width = width;
                 canvas.height = height;

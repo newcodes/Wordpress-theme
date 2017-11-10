@@ -55,9 +55,16 @@ class Armadio_nav_menu extends Walker_Nav_Menu {
 		$attributes .= ! empty($item->xfn)        ? ' rel="'    . esc_attr($item->xfn       ) .'"' : '';
 		$attributes .= ! empty($item->url)        ? ' href="'   . esc_attr($item->url       ) .'"' : '';
 		
-		$item_output = $args->before;
-		$item_output .= '<a '. $attributes .'><span>';
-		$item_output .= $args->link_before . apply_filters('the_title', $item->title, $item->ID) . $args->link_after;
+
+		if (in_array('current-menu-item', $classes)){
+			$item_output = $args->before;
+			$item_output .= $args->link_before . apply_filters('the_title', $item->title, $item->ID) . $args->link_after;
+		}else{
+			$item_output = $args->before;
+			$item_output .= '<a '. $attributes .'><span>';
+			$item_output .= $args->link_before . apply_filters('the_title', $item->title, $item->ID) . $args->link_after;
+		}
+		
 		
         if (!empty($children) && $depth == 0) {
 			$item_output .= '</span><div class="mobile-dropdown-btn">+</div></a>';

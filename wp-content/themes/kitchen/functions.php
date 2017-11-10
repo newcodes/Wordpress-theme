@@ -82,7 +82,7 @@ function armadio_wp_setup() {
         'height'      => 100,
         'width'       => 400,
         'flex-height' => true,
-        'flex-width'  => true
+        'flex-width'  => true,
     ) );
     
     register_nav_menu( 'primary', __( 'Primary Menu', 'armadio' ) );
