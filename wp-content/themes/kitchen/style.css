@@ -172,10 +172,11 @@ header .social li a:hover {
         .current-menu-item:hover {
             background: #2ecc71;
             cursor: pointer;
-        } 
-        #navbar > div > ul > li > a:hover {
-            background: #2ecc71;
         }
+    
+    #navbar > div > ul > li > a:hover {
+        background: #2ecc71;
+    }
 
 @media screen and (max-width: 767px){
     
@@ -776,9 +777,17 @@ header .social li a:hover {
     height: 100%;
 }
 
+.category-image {
+    padding-right: 15px !important;
+}
+
 .category-image img {
     width: 100%;
     height: auto;
+}
+
+.list-benefits {
+    padding-left: 20px;
 }
 
 .child-category-info {
@@ -852,8 +861,13 @@ header .social li a:hover {
 .office {
     margin-bottom: 23px;
 }
+
 .show-room {
     margin-bottom: 9px;
+}
+
+address {
+    margin: 0;
 }
 
 /** Single page*/

@@ -8,6 +8,15 @@ function armadio_enqueue_styles() {
     if ( is_page_template('galery.php') ){
         wp_enqueue_style( 'galery_css',  get_template_directory_uri() . '/lib/css/newGalery.css', $dependencies );
     }
+	if ( is_single() ){
+		wp_enqueue_style( 'slider-chelowe4ok',  get_template_directory_uri() . '/lib/css/chelowe4ok-slider.css' );
+	}
+
+	//if ( is_page_template('category.php') ){
+        wp_enqueue_style( 'simple-line-icons',  get_template_directory_uri() . '/lib/css/simple-line-icons.css', $dependencies );
+		wp_enqueue_style( 'unify-components',  get_template_directory_uri() . '/lib/css/unify-components.css', $dependencies );
+		wp_enqueue_style( 'unify-globals',  get_template_directory_uri() . '/lib/css/unify-globals.css', $dependencies );
+    //}
 }
 
 function armadio_enqueue_scripts() {
@@ -35,8 +44,9 @@ function armadio_enqueue_scripts() {
 
 	if ( is_single() ){
         wp_deregister_script( 'productSlider' );
-        wp_register_script('productSlider', get_template_directory_uri().'/lib/js/productSlider.js', $dependencies);
+        wp_register_script('productSlider', get_template_directory_uri().'/lib/js/slider-chelowe4ok.js', $dependencies);
         wp_enqueue_script('productSlider');
+
     }
     
     wp_deregister_script( 'common' );
@@ -155,6 +165,48 @@ $custom_fields = array(
             'std' => ''
         ),
 		array(
+            'name' => 'Вступ',
+            'desc' => 'Короткий опис',
+            'id' => $prefix . 'short_description',
+            'type' => 'textarea',
+            'std' => ''
+        ),
+		array(
+            'name' => 'Пункт 1',
+            'desc' => 'Введіть пункт 1',
+            'id' => $prefix . 'icon_check_1',
+            'type' => 'text',
+            'std' => ''
+        ),
+		array(
+            'name' => 'Пункт 2',
+            'desc' => 'Введіть пункт 2',
+            'id' => $prefix . 'icon_check_2',
+            'type' => 'text',
+            'std' => ''
+        ),
+		array(
+            'name' => 'Пункт 3',
+            'desc' => 'Введіть пункт 3',
+            'id' => $prefix . 'icon_check_3',
+            'type' => 'text',
+            'std' => ''
+        ),
+		array(
+            'name' => 'Пункт 4',
+            'desc' => 'Введіть пункт 4',
+            'id' => $prefix . 'icon_check_4',
+            'type' => 'text',
+            'std' => ''
+        ),
+		array(
+            'name' => 'Пункт 5',
+            'desc' => 'Введіть пункт 5',
+            'id' => $prefix . 'icon_check_5',
+            'type' => 'text',
+            'std' => ''
+        ),
+		array(
             'name' => '',
             'desc' => 'Добавити фотографії кухні',
             'id' => $prefix . 'images_kitchen',
@@ -194,7 +246,7 @@ function show_custom_fields() {
             case 'text':
 				if (get_current_screen()->post_type == 'post'){
 					echo '<input type="text" name="', $field['id'], '" id="', $field['id'], '" value="', $meta ? $meta : $field['std'], '" size="30" style="width:97%" />', '<br />', $field['desc'];
-                }else if($field['id'] != $prefix.'h2' && $field['id'] != $prefix.'video'){
+                }else if($field['id'] != $prefix.'h2' && $field['id'] != $prefix.'video' && $field['id'] != $prefix.'short_description' && !preg_match('/icon_check_/', $field['id'], $matches, PREG_OFFSET_CAPTURE)){
 					echo '<input type="text" name="', $field['id'], '" id="', $field['id'], '" value="', $meta ? $meta : $field['std'], '" size="30" style="width:97%" />', '<br />', $field['desc'];
 				}
 				break;

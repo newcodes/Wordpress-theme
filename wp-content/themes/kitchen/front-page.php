@@ -8,10 +8,7 @@
 
 <h1 itemprop="name"><?php _e('Домашня сторінка', 'armadio') ?></h1>
 <div itemprop="description" class="description">
-	Some description for site Some description for site Some description for site Some description for site
-	 Some description for site Some description for site Some description for site Some description for site
-	  Some description for site Some description for site Some description for site Some description for site 
-	   Some description for site Some description for site Some description for site Some description for site
+	<?php _e('Опис', 'armadio') ?>
 </div>
 
 
@@ -78,13 +75,11 @@
             <ul>
                 <li class="address">
                     <i class="glyphicon glyphicon-map-marker"></i>
-                    <p>
 					<address itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-						<span itemprop="streetAddress">Boulevard Vaclav Havel, 16</span>,
-						<span itemprop="addressRegion">Kiev</span>,
-						<span itemprop="addressCountry">Ukraine</span>
+						<span itemprop="streetAddress"><?php _e('бульвар Вацлава Гавела, 16', 'armadio') ?></span>,
+						<span itemprop="addressRegion"><?php _e('Київ', 'armadio') ?></span>,
+						<span itemprop="addressCountry"><?php _e('Україна', 'armadio') ?></span>
 					</address>
-					</p>
                 </li>
                 <li class="phone-footer">
                     <i class="glyphicon glyphicon-earphone"></i>
@@ -116,15 +111,15 @@
     <div class="block-information col-xs-6 hidden-sm col-md-3 col-lg-3">
         <div class="info-box">
             <div class="info-box-header">
-                <h4>Why choose armadio?</h4>
+                <h4><?php _e('Чому Armadio?', 'armadio') ?></h4>
                 <span class="arrow-info"></span>
             </div>
             <div itemprop="description" class="info-box-desc">
                 <ul>
-                    <li>We are one of oldest companies in the field</li>
-                    <li>Over 40 countries worldwide.</li>
-                    <li>Hight quality (no compromise)</li>
-                    <li>Advanced technology with comfort and elegance</li>
+                    <li><?php _e('Досвід роботи у цій галузі більше 10 років.', 'armadio') ?></li>
+                    <li><?php _e('Відкриті ціни.', 'armadio') ?></li>
+                    <li><?php _e('Висока якість виробництва кухонь.', 'armadio') ?></li>
+                    <li><?php _e('Розвинена технологія, яка забезпечує комфортом та надійність у використанні кухонь.', 'armadio') ?></li>
                 </ul>
             </div>
         </div>

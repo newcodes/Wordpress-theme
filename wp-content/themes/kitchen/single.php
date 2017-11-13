@@ -17,7 +17,25 @@ $videoId = get_post_meta(get_the_ID(), 'armadio_video' , true);
 <div id="product-page">
 
 	<!-- display product images-->
-
+	
+	<!-- Chelowe4okSlider Main -->
+	<div id="chelowe4okslider" class="chelowe4ok-slider">
+			<?php
+				for ($i = 1; $i <= $countImages; $i++){
+					$meta_field_image = get_post_meta(get_the_ID(), 'armadio_images_kitchen_'.$i , true);
+					if ($meta_field_image){
+						?>
+			
+							<div class="ch-slide">
+								<img src="assets/img/blank.gif" alt="" title="" data-src="<?php echo wp_get_attachment_image_src( $meta_field_image, 'category-thumb', false)[0]; ?>" />
+							</div>
+						
+			<?php 	}
+				}
+				?>
+	</div>
+    <!-- END Chelowe4okSlider Main -->
+	<!--
 	<div class="wrapper">
 		<div class="viewport">			
 				<?php
@@ -29,8 +47,10 @@ $videoId = get_post_meta(get_the_ID(), 'armadio_video' , true);
 							<?php 
 
 							echo wp_get_attachment_image ( $meta_field_image, 'category-thumb', false, array("class" => "product-list-image") );
-
+							
 							?>
+
+							
 			
 						<?php 
 					}
@@ -38,7 +58,7 @@ $videoId = get_post_meta(get_the_ID(), 'armadio_video' , true);
 				?>
 		</div>
 	</div>
-
+	-->
 <!-- display subtitle-->
 <?php if($subtitle){
 	 echo '<h2>'.$subtitle.'</h2>';
