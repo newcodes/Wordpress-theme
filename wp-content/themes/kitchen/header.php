@@ -13,7 +13,7 @@
     <?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); ?>>
+<body itemscope itemtype="http://schema.org/FurnitureStore" <?php body_class(); ?>>
 <header>
     <div class="row">
         <div class="top-bar col-xs-11 col-centered row">
@@ -39,9 +39,13 @@
                     <?php  if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) {?>
                             <div class='navbar-header col-xs-12 col-sm-3 col-md-3 col-ld-2'>
                                 <?php 
-                                    if ( function_exists( 'the_custom_logo' ) ) {
+                                    if ( function_exists( 'the_custom_logo' ) && !is_front_page() && !is_home() ) {
                                         the_custom_logo();
-                                    }
+                                    }else {
+										$custom_logo_id = get_theme_mod('custom_logo');
+										$image = wp_get_attachment_image_src( $custom_logo_id , 'full' );
+										echo '<img itemprop="logo" src="'.$image[0].'" alt="Designer kitchens to order from Armadio" title="Designer kitchens to order from Armadio" />';
+									}
                                 ?>
                             </div>
                             <div class="navbar-content">

@@ -1,0 +1,91 @@
+
+@font-face {
+    font-family: 'revicon';
+    src: url('font/revicons.eot');
+    src: url('font/revicons.eot#iefix') format('embedded-opentype'), url('fonts/revicons.woff') format('woff'), url('font/revicons.ttf') format('truetype'), url('font/revicons.svg') format('svg');
+}
+
+.chelowe4ok-slider {
+    overflow: hidden;
+    margin-top: 100px;
+}
+
+.inner-controls {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.ch-view {
+    width: 700px;
+    height: 500px;
+    -webkit-perspective: 2000px;
+    -moz-perspective: 2000px;
+    -ms-perspective: 2000px;
+    perspective: 2000px;
+}
+
+.ch-slide-container {
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+.ch-slide {
+    position: absolute;
+    transform-style: preserve-3d;
+}
+
+.btn-next {
+    top: 50%;
+    -webkit-transform: matrix(1, 0, 0, 1, -60, -20);
+    -moz-transform: matrix(1, 0, 0, 1, -60, -20);
+    -ms-transform: matrix(1, 0, 0, 1, -60, -20);
+    -o-transform: matrix(1, 0, 0, 1, -60, -20);
+    transform: matrix(1, 0, 0, 1, -60, -20);
+    left: 100%;
+    cursor: pointer;
+    background: rgba(0,0,0,0.5);
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    display: block;
+    z-index: 20;
+}
+
+    .btn-next::after {
+        content: "\e825";
+        margin-right: -3px;
+        font-family: revicon;
+        font-size: 15px;
+        color: #fff;
+        display: block;
+        line-height: 40px;
+        text-align: center;
+    }
+
+.btn-prev {
+    top: 50%;
+    -webkit-transform: matrix(1, 0, 0, 1, 20, -20);
+    -moz-transform: matrix(1, 0, 0, 1, 20, -20);
+    -ms-transform: matrix(1, 0, 0, 1, 20, -20);
+    -o-transform: matrix(1, 0, 0, 1, 20, -20);
+    transform: matrix(1, 0, 0, 1, 20, -20);
+    left: 0px;
+    cursor: pointer;
+    background: rgba(0,0,0,0.5);
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    display: block;
+    z-index: 20;
+}
+
+    .btn-prev:after {
+        content: "\e824";
+        margin-left: -3px;
+        font-family: revicon;
+        font-size: 15px;
+        color: #fff;
+        display: block;
+        line-height: 40px;
+        text-align: center;
+    }

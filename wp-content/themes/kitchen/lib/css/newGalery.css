@@ -1,6 +1,7 @@
 @font-face {
-    font-family: revicon;
-    src: url(font/revicons.ttf);
+    font-family: 'revicon';
+    src: url('font/revicons.eot');
+    src: url('font/revicons.eot#iefix') format('embedded-opentype'), url('font/revicons.woff') format('woff'), url('font/revicons.ttf') format('truetype'), url('font/revicons.svg') format('svg');
 }
 
 /*Galery page*/

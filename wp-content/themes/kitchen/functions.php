@@ -8,6 +8,15 @@ function armadio_enqueue_styles() {
     if ( is_page_template('galery.php') ){
         wp_enqueue_style( 'galery_css',  get_template_directory_uri() . '/lib/css/newGalery.css', $dependencies );
     }
+	if ( is_single() ){
+		wp_enqueue_style( 'slider-chelowe4ok',  get_template_directory_uri() . '/lib/css/chelowe4ok-slider.css' );
+	}
+
+	//if ( is_page_template('category.php') ){
+        wp_enqueue_style( 'simple-line-icons',  get_template_directory_uri() . '/lib/css/simple-line-icons.css', $dependencies );
+		wp_enqueue_style( 'unify-components',  get_template_directory_uri() . '/lib/css/unify-components.css', $dependencies );
+		wp_enqueue_style( 'unify-globals',  get_template_directory_uri() . '/lib/css/unify-globals.css', $dependencies );
+    //}
 }
 
 function armadio_enqueue_scripts() {
@@ -19,9 +28,25 @@ function armadio_enqueue_scripts() {
     wp_enqueue_script('footer-maps', get_template_directory_uri() . '/js/contact-maps.js');
 
     if ( is_page_template('galery.php') ){
-        wp_deregister_script( 'newGgalery' );
-        wp_register_script('newGalery', get_template_directory_uri().'/lib/js/newGalery.js', $dependencies);
-        wp_enqueue_script('newGalery');
+
+		global $is_IE;
+		if( $is_IE ) {
+			wp_deregister_script( 'newGalery-ie' );
+			wp_register_script('newGalery-ie', get_template_directory_uri().'/lib/js/newGalery-ie.js', $dependencies);
+			wp_enqueue_script('newGalery-ie');
+		}else {
+			wp_deregister_script( 'newGalery-modern-browsers' );
+			wp_register_script('newGalery-modern-browsers', get_template_directory_uri().'/lib/js/newGalery-modern-browsers.js', $dependencies);
+			wp_enqueue_script('newGalery-modern-browsers');
+		}
+        
+    }
+
+	if ( is_single() ){
+        wp_deregister_script( 'productSlider' );
+        wp_register_script('productSlider', get_template_directory_uri().'/lib/js/slider-chelowe4ok.js', $dependencies);
+        wp_enqueue_script('productSlider');
+
     }
     
     wp_deregister_script( 'common' );
@@ -76,7 +101,7 @@ function armadio_wp_setup() {
         'height'      => 100,
         'width'       => 400,
         'flex-height' => true,
-        'flex-width'  => true
+        'flex-width'  => true,
     ) );
     
     register_nav_menu( 'primary', __( 'Primary Menu', 'armadio' ) );
@@ -119,9 +144,65 @@ $custom_fields = array(
     'priority' => 'high',
     'fields' => array(
         array(
-            'name' => 'H1',
+            'name' => 'Заголовок',
             'desc' => 'Введіть заголовок сторінки.',
             'id' => $prefix . 'h1',
+            'type' => 'text',
+            'std' => ''
+        ),
+		array(
+            'name' => 'Підзаголовок',
+            'desc' => 'Введіть підзаголовок сторінки.',
+            'id' => $prefix . 'h2',
+            'type' => 'text',
+            'std' => ''
+        ),
+		array(
+            'name' => 'Відео',
+            'desc' => 'Введіть youtube id',
+            'id' => $prefix . 'video',
+            'type' => 'text',
+            'std' => ''
+        ),
+		array(
+            'name' => 'Вступ',
+            'desc' => 'Короткий опис',
+            'id' => $prefix . 'short_description',
+            'type' => 'textarea',
+            'std' => ''
+        ),
+		array(
+            'name' => 'Пункт 1',
+            'desc' => 'Введіть пункт 1',
+            'id' => $prefix . 'icon_check_1',
+            'type' => 'text',
+            'std' => ''
+        ),
+		array(
+            'name' => 'Пункт 2',
+            'desc' => 'Введіть пункт 2',
+            'id' => $prefix . 'icon_check_2',
+            'type' => 'text',
+            'std' => ''
+        ),
+		array(
+            'name' => 'Пункт 3',
+            'desc' => 'Введіть пункт 3',
+            'id' => $prefix . 'icon_check_3',
+            'type' => 'text',
+            'std' => ''
+        ),
+		array(
+            'name' => 'Пункт 4',
+            'desc' => 'Введіть пункт 4',
+            'id' => $prefix . 'icon_check_4',
+            'type' => 'text',
+            'std' => ''
+        ),
+		array(
+            'name' => 'Пункт 5',
+            'desc' => 'Введіть пункт 5',
+            'id' => $prefix . 'icon_check_5',
             'type' => 'text',
             'std' => ''
         ),
@@ -144,7 +225,7 @@ function theme_add_custom_fields() {
 }
 
 function show_custom_fields() {
-    global $custom_fields, $post;
+    global $custom_fields, $post, $prefix;
 
     echo '<input type="hidden" name="custom_fields_nonce" value="', wp_create_nonce(basename(__FILE__)), '" />';
     echo '<table class="form-table">';
@@ -153,13 +234,22 @@ function show_custom_fields() {
         // get current post meta data
         $meta = get_post_meta($post->ID, $field['id'], true);
 
-        echo '<tr>',
-                '<th style="width:20%"><label for="', $field['id'], '">', $field['name'], '</label></th>',
-                '<td>';
+		
+        echo '<tr>';
+		if (get_current_screen()->post_type == 'post'){
+                echo '<th style="width:20%"><label for="', $field['id'], '">', $field['name'], '</label></th>';
+		}
+        
+		echo '<td>';
+
         switch ($field['type']) {
             case 'text':
-                echo '<input type="text" name="', $field['id'], '" id="', $field['id'], '" value="', $meta ? $meta : $field['std'], '" size="30" style="width:97%" />', '<br />', $field['desc'];
-                break;
+				if (get_current_screen()->post_type == 'post'){
+					echo '<input type="text" name="', $field['id'], '" id="', $field['id'], '" value="', $meta ? $meta : $field['std'], '" size="30" style="width:97%" />', '<br />', $field['desc'];
+                }else if($field['id'] != $prefix.'h2' && $field['id'] != $prefix.'video' && $field['id'] != $prefix.'short_description' && !preg_match('/icon_check_/', $field['id'], $matches, PREG_OFFSET_CAPTURE)){
+					echo '<input type="text" name="', $field['id'], '" id="', $field['id'], '" value="', $meta ? $meta : $field['std'], '" size="30" style="width:97%" />', '<br />', $field['desc'];
+				}
+				break;
             case 'textarea':
                 echo '<textarea name="', $field['id'], '" id="', $field['id'], '" cols="60" rows="4" style="width:97%">', $meta ? $meta : $field['std'], '</textarea>', '<br />', $field['desc'];
                 break;
@@ -348,7 +438,9 @@ add_action('save_post', 'save_data_custom_fields');
 function save_data_custom_fields($post_id) {
     global $custom_fields;
 
-    if (!wp_verify_nonce($_POST['custom_fields_nonce'], basename(__FILE__))) {
+	if (!isset($_POST['custom_fields_nonce'])) return;
+
+    if ( !wp_verify_nonce($_POST['custom_fields_nonce'], basename(__FILE__))) {
         return $post_id;
     }
 	
@@ -360,49 +452,70 @@ function save_data_custom_fields($post_id) {
         if (!current_user_can('edit_page', $post_id)) {
             return $post_id;
         }
-    } elseif (!current_user_can('edit_post', $post_id)) {
+    }elseif (!current_user_can('edit_post', $post_id)) {
         return $post_id;
     }
 
-    foreach ($custom_fields['fields'] as $field) {
-        $old = get_post_meta($post_id, $field['id'], true);
-        $new = $_POST[$field['id']];
+	
 
-		if( get_current_screen()->post_type == 'post' && $field['type'] == 'image' ){
-			$countStr = $field['id'].'_count';
+		foreach ($custom_fields['fields'] as $field) {
+
+				if (get_current_screen()->post_type == 'post'){
+					$old = get_post_meta($post_id, $field['id'], true);
+					$new = $_POST[$field['id']];
+
+					if( get_current_screen()->post_type == 'post' && $field['type'] == 'image' ){
+						$countStr = $field['id'].'_count';
 
 
-			$oldCount = get_post_meta($post_id, $countStr, true);
-			$newCount = $_POST[$countStr];
-			if ($newCount && $newCount != $oldCount) {
-				update_post_meta($post_id, $countStr, $newCount);
-			} elseif ('' == $newCount && $oldCount) {
-				delete_post_meta($post_id, $countStr, $oldCount);
-			}
+						$oldCount = get_post_meta($post_id, $countStr, true);
+						$newCount = $_POST[$countStr];
+						if ($newCount && $newCount != $oldCount) {
+							update_post_meta($post_id, $countStr, $newCount);
+						} elseif ('' == $newCount && $oldCount) {
+							delete_post_meta($post_id, $countStr, $oldCount);
+						}
 
-			$count = $_POST[$countStr];
+						$count = $_POST[$countStr];
 
-			for ($i = 1; $i <= $count; $i++) {
-				$imageId = $field['id'].'_'.$i;
-				$oldImage = get_post_meta($post_id, $imageId, true);
-				$newImage = $_POST[$imageId];
-				if ($newImage && $newImage != $oldImage){
-					update_post_meta($post_id, $imageId, $newImage);
-					// add_term_meta( $term_id, $field['id'], $image, true );
-				}elseif('' == $newImage && $oldImage){
-					delete_post_meta($post_id, $imageId, $oldImage);
+						for ($i = 1; $i <= $count; $i++) {
+							$imageId = $field['id'].'_'.$i;
+							$oldImage = get_post_meta($post_id, $imageId, true);
+
+							if (isset($_POST[$imageId])){
+								$newImage = $_POST[$imageId];
+								if ($newImage && $newImage != $oldImage){
+									update_post_meta($post_id, $imageId, $newImage);
+									// add_term_meta( $term_id, $field['id'], $image, true );
+								}elseif('' == $newImage && $oldImage){
+									delete_post_meta($post_id, $imageId, $oldImage);
+								}
+							}else{
+								delete_post_meta($post_id, $imageId, $oldImage);
+							}
+					
+						}
+
+					}else {
+						
+						if ($new && $new != $old) {
+							update_post_meta($post_id, $field['id'], $new);
+						} elseif ('' == $new && $old) {
+							delete_post_meta($post_id, $field['id'], $old);
+						}
+					}
+				}elseif (isset($_POST[$field['id']])) {
+					$old = get_post_meta($post_id, $field['id'], true);
+					$new = $_POST[$field['id']];
+
+					if ($new && $new != $old) {
+							update_post_meta($post_id, $field['id'], $new);
+					} elseif ('' == $new && $old) {
+							delete_post_meta($post_id, $field['id'], $old);
+					}
 				}
-			}
+		}
 
-		 
-	   }
-
-        if ($new && $new != $old) {
-            update_post_meta($post_id, $field['id'], $new);
-        } elseif ('' == $new && $old) {
-            delete_post_meta($post_id, $field['id'], $old);
-        }
-    }
 }
 
 /*

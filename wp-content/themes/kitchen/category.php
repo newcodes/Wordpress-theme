@@ -68,6 +68,72 @@ get_template_part( 'template-parts/category', 'subheader' );
         if ( have_posts() ) :
             while ( have_posts() ) : the_post();
 				$count++;
+
+				$icon_check_1 = get_post_meta(get_the_ID(), 'armadio_icon_check_1' , true);
+				$icon_check_2 = get_post_meta(get_the_ID(), 'armadio_icon_check_2' , true);
+				$icon_check_3 = get_post_meta(get_the_ID(), 'armadio_icon_check_3' , true);
+				$icon_check_4 = get_post_meta(get_the_ID(), 'armadio_icon_check_4' , true);
+				$icon_check_5 = get_post_meta(get_the_ID(), 'armadio_icon_check_5' , true);
+				$introduction = get_post_meta(get_the_ID(), 'armadio_short_description' , true);
+				
+				?>
+				<div class="row">
+                    <div class="col-lg-6 g-mb-50 g-mb-0--lg category-image">
+                      <?php the_post_thumbnail('category-thumb') ?>
+                    </div>
+
+                    <div class="col-lg-6 align-self-center">
+                      <header class="u-heading-v2-3--bottom g-brd-primary g-mb-20">
+                        <h2 class="h3 u-heading-v2__title text-uppercase g-font-weight-300"><?php the_title(); ?></h2>
+                      </header>
+
+                      <p class="lead g-mb-30"><?php echo $introduction; ?></p>
+
+                      <ul class="list-unstyled g-color-gray-dark-v4 g-mb-40 list-benefits">
+
+						<?php if ($icon_check_1 && $icon_check_1 != ''){ ?>
+							<li class="d-flex g-mb-10">
+							  <i class="icon-check g-color-primary g-mt-5 g-mr-10"></i>
+							  <?php echo $icon_check_1; ?>
+							</li>
+						<?php } ?>
+						<?php if ($icon_check_2 && $icon_check_2 != ''){ ?>
+							<li class="d-flex g-mb-10">
+							  <i class="icon-check g-color-primary g-mt-5 g-mr-10"></i>
+							  <?php echo $icon_check_2; ?>
+							</li>
+						<?php } ?>
+						<?php if ($icon_check_3 && $icon_check_3 != ''){ ?>
+							<li class="d-flex g-mb-10">
+							  <i class="icon-check g-color-primary g-mt-5 g-mr-10"></i>
+							  <?php echo $icon_check_3; ?>
+							</li>
+						<?php } ?>
+						<?php if ($icon_check_4 && $icon_check_4 != ''){ ?>
+							<li class="d-flex g-mb-10">
+							  <i class="icon-check g-color-primary g-mt-5 g-mr-10"></i>
+							  <?php echo $icon_check_4; ?>
+							</li>
+						<?php } ?>
+						<?php if ($icon_check_5 && $icon_check_5 != ''){ ?>
+							<li class="d-flex g-mb-10">
+							  <i class="icon-check g-color-primary g-mt-5 g-mr-10"></i>
+							  <?php echo $icon_check_5; ?>
+							</li>
+						<?php } ?>
+                      </ul>
+
+                      <a class="btn btn-lg u-btn-primary rounded-0" rel="bookmark" title="<?php the_title_attribute(); ?>" href="<?php the_permalink() ?>">Learn More</a>
+                    </div>
+                  </div>
+				  <hr/>
+				  <?php
+
+
+
+
+
+				  /*
 				if ($count % 2 != 0) {?>
 					<div class="row kitchen">
 						<div class="col-xs-6 kitchen-image"><?php the_post_thumbnail('category-thumb') ?></div>
@@ -88,7 +154,10 @@ get_template_part( 'template-parts/category', 'subheader' );
 						</div>
 						<div class="col-xs-6 kitchen-image"><?php the_post_thumbnail('category-thumb') ?></div>
 					</div>
-				<?php }?>
+				<?php } */?>
+				
+
+
             <?php endwhile;
          else: ?>
             <p>Sorry, no kitchens.</p>

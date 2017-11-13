@@ -163,16 +163,20 @@ header .social li a:hover {
   float: right;  
 }
 
-#navbar > div > ul > li > a {
-  color: #fff;
-  padding: 30px 20px 30px;
-  white-space: nowrap;
-  text-transform: uppercase;
-}
-
-#navbar > div > ul > li > a:hover {
-  background: #2ecc71;
-}
+    #navbar > div > ul > li > a, .current-menu-item {
+        color: #fff;
+        padding: 30px 20px 30px;
+        white-space: nowrap;
+        text-transform: uppercase;
+    }
+        .current-menu-item:hover {
+            background: #2ecc71;
+            cursor: pointer;
+        }
+    
+    #navbar > div > ul > li > a:hover {
+        background: #2ecc71;
+    }
 
 @media screen and (max-width: 767px){
     
@@ -225,10 +229,10 @@ header .social li a:hover {
         float: none;
         text-align: center;
     }
-    
-    #navbar > div > ul > li > a {
-        padding: 15px 20px;
-    }
+
+        #navbar > div > ul > li > a, .current-menu-item {
+            padding: 15px 20px;
+        }
     
 /*    subheader*/
     
@@ -240,12 +244,15 @@ header .social li a:hover {
     }
     
 /*   dropdown menu*/
+
+    #menu-main-menu{
+        margin: 0;
+    } 
     
-    #menu-main-menu > li:hover > ul.sub-menu{
-        position: relative!important;
-        
-        overflow: hidden!important;
-         -webkit-transition: max-height 3s ease-out;
+    #menu-main-menu > li:hover > ul.sub-menu {
+        position: relative !important;
+        overflow: hidden !important;
+        -webkit-transition: max-height 3s ease-out;
         -ms-transition: max-height 3s ease-out;
         -o-transition: max-height 3s ease-out;
         transition: max-height 3s ease-out;
@@ -770,9 +777,17 @@ header .social li a:hover {
     height: 100%;
 }
 
+.category-image {
+    padding-right: 15px !important;
+}
+
 .category-image img {
     width: 100%;
     height: auto;
+}
+
+.list-benefits {
+    padding-left: 20px;
 }
 
 .child-category-info {
@@ -846,7 +861,91 @@ header .social li a:hover {
 .office {
     margin-bottom: 23px;
 }
+
 .show-room {
     margin-bottom: 9px;
 }
 
+address {
+    margin: 0;
+}
+
+/** Single page*/
+
+@font-face {
+    font-family: revicon;
+    src: url(lib/css/font/revicons.ttf);
+}
+
+#product-page h2, #product-page .description, #product-page .video {
+    text-align: center;
+}
+
+.viewport {
+    -webkit-transition: -webkit-transform 1s;
+    -moz-transition: -moz-transform 1s;
+    -o-transition: -o-transform 1s;
+    transition: transform 1s;
+}
+
+.product-image {
+    width: 100%;
+    height: auto;
+}
+
+.product-list-image {
+    display: none;
+}
+
+.galery-btn {
+    position: absolute;
+    cursor: pointer;
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    background: rgba(0,0,0,0.35);
+}
+
+.galery-btn:hover {
+        background: #000;
+    }
+
+.btn-left {
+    top: 50%;
+    left: 0;
+    transform: matrix(1, 0, 0, 1, 20, -20);
+}
+
+.btn-left:before {
+        content: "\e824";
+        margin-left: -3px;
+        font-family: revicon;
+        font-size: 15px;
+        color: #fff;
+        display: block;
+        line-height: 40px;
+        text-align: center;
+    }
+.btn-right {
+    top: 50%;
+    left: 100%;
+    transform: matrix(1, 0, 0, 1, -60, -20);
+}
+
+.btn-right:before {
+        content: "\e825";
+        margin-left: -3px;
+        font-family: revicon;
+        font-size: 15px;
+        color: #fff;
+        display: block;
+        line-height: 40px;
+        text-align: center;
+}
+
+.rootImage {
+    -webkit-transition: -webkit-transform 1s;
+    -moz-transition: -moz-transform 1s;
+    -o-transition: -o-transform 1s;
+    transition: transform 1s;
+}

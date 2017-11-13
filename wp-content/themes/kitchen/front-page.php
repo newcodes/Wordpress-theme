@@ -6,8 +6,10 @@
 <?php endif; ?>
 
 
-<h1><?php _e('Домашня сторінка', 'armadio') ?></h1>
-
+<h1 itemprop="name"><?php _e('Домашня сторінка', 'armadio') ?></h1>
+<div itemprop="description" class="description">
+	<?php _e('Опис', 'armadio') ?>
+</div>
 
 
 
@@ -63,7 +65,7 @@
 <div class="footer-information col-sm-11">
     <div class="block-information map col-xs-6 col-sm-4 col-md-3 col-lg-3">
         <div id="map"></div>
-        <script async defer
+        <script itemprop="hasMap" async defer
                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCp4kIA1rpEhdniApOP9DiPwH0Dd4r75PI&callback=initMap1">
         </script>
     </div>
@@ -73,17 +75,21 @@
             <ul>
                 <li class="address">
                     <i class="glyphicon glyphicon-map-marker"></i>
-                    <p>60 MEDINAT HAYEHUDIM STREET, HERTZLIA PITUACH</p>
+					<address itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+						<span itemprop="streetAddress"><?php _e('бульвар Вацлава Гавела, 16', 'armadio') ?></span>,
+						<span itemprop="addressRegion"><?php _e('Київ', 'armadio') ?></span>,
+						<span itemprop="addressCountry"><?php _e('Україна', 'armadio') ?></span>
+					</address>
                 </li>
                 <li class="phone-footer">
                     <i class="glyphicon glyphicon-earphone"></i>
-                    <p>+38 (044) 206 36 39 </p></li>
+                    <p itemprop="telephone">+38 (044) 206 36 39 </p></li>
                 <li class="mail">
                     <i class="glyphicon glyphicon-envelope"></i>
-                    <p>home@mdvd.com.ua</p></li>
+                    <p itemprop="email">home@mdvd.com.ua</p></li>
                 <li class="www">
                     <i class="glyphicon glyphicon-globe"></i>
-                    <p>armadio.com.ua</p></li>
+                    <p itemprop="url">armadio.com.ua</p></li>
             </ul>
         </div>
     </div>
@@ -105,15 +111,15 @@
     <div class="block-information col-xs-6 hidden-sm col-md-3 col-lg-3">
         <div class="info-box">
             <div class="info-box-header">
-                <h4>Why choose armadio?</h4>
+                <h4><?php _e('Чому Armadio?', 'armadio') ?></h4>
                 <span class="arrow-info"></span>
             </div>
-            <div class="info-box-desc">
+            <div itemprop="description" class="info-box-desc">
                 <ul>
-                    <li>We are one of oldest companies in the field</li>
-                    <li>Over 40 countries worldwide.</li>
-                    <li>Hight quality (no compromise)</li>
-                    <li>Advanced technology with comfort and elegance</li>
+                    <li><?php _e('Досвід роботи у цій галузі більше 10 років.', 'armadio') ?></li>
+                    <li><?php _e('Відкриті ціни.', 'armadio') ?></li>
+                    <li><?php _e('Висока якість виробництва кухонь.', 'armadio') ?></li>
+                    <li><?php _e('Розвинена технологія, яка забезпечує комфортом та надійність у використанні кухонь.', 'armadio') ?></li>
                 </ul>
             </div>
         </div>

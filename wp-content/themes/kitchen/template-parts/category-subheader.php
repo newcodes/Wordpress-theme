@@ -5,7 +5,7 @@
             <?php 
                 
                 if ( $title )
-                    echo '<h1>'.$title.'</h1>';
+                    echo '<h1 itemprop="name">'.$title.'</h1>';
             ?>
         </div>
     </div>

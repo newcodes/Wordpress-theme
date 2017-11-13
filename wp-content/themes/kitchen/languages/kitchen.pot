@@ -19,3 +19,27 @@ msgstr ""
 #: front-page.php:3
 msgid "Домашня сторінка"
 msgstr ""
+
+#: front-page.php:11
+msgid "Опис"
+msgstr ""
+
+#: front-page.php:116
+msgid "Чому Armadio"
+msgstr ""
+
+#: front-page.php:121
+msgid "Досвід роботи у цій галузі більше 10 років"
+msgstr ""
+
+#: front-page.php:122
+msgid "Відкриті ціни"
+msgstr ""
+
+#: front-page.php:123
+msgid "Висока якість виробництва і мотажу кухонь"
+msgstr ""
+
+#: front-page.php:124
+msgid "Розвинена технологія, яка забезпечує комфортом та надійність у використанні кухонь"
+msgstr ""
