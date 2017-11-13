@@ -8,6 +8,11 @@ function armadio_enqueue_styles() {
     if ( is_page_template('galery.php') ){
         wp_enqueue_style( 'galery_css',  get_template_directory_uri() . '/lib/css/newGalery.css', $dependencies );
     }
+
+
+    /*wp_enqueue_style( 'galery_css',  get_template_directory_uri() . '/assets/vendor/bootstrap/bootstrap.min.css', $dependencies );*/
+
+
 }
 
 function armadio_enqueue_scripts() {
@@ -629,4 +634,5 @@ function galery_custom_sizes( $sizes ) {
 		'category-thumb' => __( 'Категорія' ),
     ) );
 }
+
 ?>

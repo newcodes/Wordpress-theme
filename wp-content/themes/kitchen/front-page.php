@@ -60,63 +60,97 @@
 
 </div>
 
-<div class="footer-information col-sm-11">
-    <div class="block-information map col-xs-6 col-sm-4 col-md-3 col-lg-3">
-        <div id="map"></div>
-        <script async defer
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCp4kIA1rpEhdniApOP9DiPwH0Dd4r75PI&callback=initMap1">
-        </script>
-    </div>
-    <div class="block-information col-xs-6 col-sm-4 col-md-3 col-lg-3">
-        <div class="contact">
-            <h3>Contact</h3>
-            <ul>
-                <li class="address">
-                    <i class="glyphicon glyphicon-map-marker"></i>
-                    <p>60 MEDINAT HAYEHUDIM STREET, HERTZLIA PITUACH</p>
+
+
+
+
+
+
+<div class="shortcode-html">
+    <div class="row">
+        <div class="col-lg-6 g-mb-50 g-mb-0--lg">
+            <img class="img-fluid" src="../../assets/img/inline/inline8.png" alt="Image Description">
+        </div>
+
+        <div class="col-lg-6 align-self-center">
+            <header class="u-heading-v2-3--bottom g-brd-primary g-mb-20">
+                <h2 class="h3 u-heading-v2__title text-uppercase g-font-weight-300">About Our Company</h2>
+            </header>
+
+            <p class="lead g-mb-30">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas moles</p>
+
+            <ul class="list-unstyled g-color-gray-dark-v4 g-mb-40">
+                <li class="d-flex g-mb-10">
+                    <i class="icon-check g-color-primary g-mt-5 g-mr-10"></i>
+                    Included Over 2000+ UI Components
                 </li>
-                <li class="phone-footer">
-                    <i class="glyphicon glyphicon-earphone"></i>
-                    <p>+38 (044) 206 36 39 </p></li>
-                <li class="mail">
-                    <i class="glyphicon glyphicon-envelope"></i>
-                    <p>home@mdvd.com.ua</p></li>
-                <li class="www">
-                    <i class="glyphicon glyphicon-globe"></i>
-                    <p>armadio.com.ua</p></li>
+                <li class="d-flex g-mb-10">
+                    <i class="icon-check g-color-primary g-mt-5 g-mr-10"></i>
+                    Beautiful Eye Catching Demos
+                </li>
+                <li class="d-flex g-mb-10">
+                    <i class="icon-check g-color-primary g-mt-5 g-mr-10"></i>
+                    Over 30+ Beautiful Thematic Examples
+                </li>
+                <li class="d-flex g-mb-10">
+                    <i class="icon-check g-color-primary g-mt-5 g-mr-10"></i>
+                    Semantic HTML5/CSS3 Codes
+                </li>
             </ul>
-        </div>
-    </div>
-    <div class="block-information fb-block col-xs-6 col-sm-4 col-md-3 col-lg-3">
-        <div id="fb-root"></div>
-        <script>(function(d, s, id) {
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) return;
-                js = d.createElement(s); js.id = id;
-                js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.10";
-                fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));</script>
-        <div class="fb-page" data-href="https://www.facebook.com/&#x41c;&#x414;&#x412;&#x414;-&#x43c;&#x435;&#x431;&#x435;&#x43b;&#x44c;-&#x43d;&#x430;-&#x437;&#x430;&#x43a;&#x430;&#x437;-922762267844584/" data-tabs="timeline" data-height="330px" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
-            <blockquote cite="https://www.facebook.com/&#x41c;&#x414;&#x412;&#x414;-&#x43c;&#x435;&#x431;&#x435;&#x43b;&#x44c;-&#x43d;&#x430;-&#x437;&#x430;&#x43a;&#x430;&#x437;-922762267844584/" class="fb-xfbml-parse-ignore">
-                <a href="https://www.facebook.com/&#x41c;&#x414;&#x412;&#x414;-&#x43c;&#x435;&#x431;&#x435;&#x43b;&#x44c;-&#x43d;&#x430;-&#x437;&#x430;&#x43a;&#x430;&#x437;-922762267844584/">МДВД - мебель на заказ</a>
-            </blockquote>
-        </div>
-    </div>
-    <div class="block-information col-xs-6 hidden-sm col-md-3 col-lg-3">
-        <div class="info-box">
-            <div class="info-box-header">
-                <h4>Why choose armadio?</h4>
-                <span class="arrow-info"></span>
-            </div>
-            <div class="info-box-desc">
-                <ul>
-                    <li>We are one of oldest companies in the field</li>
-                    <li>Over 40 countries worldwide.</li>
-                    <li>Hight quality (no compromise)</li>
-                    <li>Advanced technology with comfort and elegance</li>
-                </ul>
-            </div>
+
+            <a class="btn btn-md u-btn-primary rounded-0" href="#">Learn More</a>
         </div>
     </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="shortcode-html">
+    <div class="row text-center">
+        <div class="col-md-3 col-sm-6 g-mb-30">
+                      <span class="u-icon-v3 u-icon-size--xl g-bg-primary-opacity-0_1 rounded-circle g-mb-10">
+                        <i class="et-icon-wallet g-color-primary"></i>
+                      </span>
+
+            <div class="js-counter g-color-primary g-font-size-40 g-font-weight-300 g-mb-7">9</div>
+            <p>Сотрудников</p>
+        </div>
+
+        <div class="col-md-3 col-sm-6 g-mb-30">
+                      <span class="u-icon-v3 u-icon-size--xl g-bg-cyan-opacity-0_1 rounded-circle g-mb-10">
+                        <i class="et-icon-genius g-color-cyan"></i>
+                      </span>
+
+            <div class="js-counter g-color-cyan g-font-size-40 g-font-weight-300 g-mb-7">200</div>
+        </div>
+
+        <div class="col-md-3 col-sm-6 g-mb-30">
+                      <span class="u-icon-v3 u-icon-size--xl g-bg-lightred-opacity-0_1 rounded-circle g-mb-10">
+                        <i class="et-icon-tools g-color-lightred"></i>
+                      </span>
+
+            <div class="js-counter g-color-lightred g-font-size-40 g-font-weight-300 g-mb-7">1000</div>
+        </div>
+
+        <div class="col-md-3 col-sm-6 g-mb-30">
+                      <span class="u-icon-v3 u-icon-size--xl g-bg-teal-opacity-0_1 rounded-circle g-mb-10">
+                        <i class="et-icon-chat g-color-teal"></i>
+                      </span>
+
+            <div class="js-counter g-color-teal g-font-size-40 g-font-weight-300 g-mb-7">1500</div>
+        </div>
+    </div>
+</div>
+
 <?php get_footer() ?>
